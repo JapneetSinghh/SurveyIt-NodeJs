@@ -11,7 +11,7 @@ const app = express();
 
 // Serving the Public Folder As Static For Assets And CSS
 const path = require('path');
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 // Importing the userSchema
 // const User = require('./Models/users');
