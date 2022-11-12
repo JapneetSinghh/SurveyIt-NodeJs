@@ -1,0 +1,119 @@
+.modalMain {
+    position: relative;
+}
+
+#modal {
+    background-color: rgba(0, 0, 0, 0.618);
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    transition: 0.7s all linear;
+}
+
+#modal-container {
+    transition: var(--transition);
+}
+
+.modal-container {
+    width: 60% !important;
+    min-height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    padding: 30px;
+}
+
+.modal-container-header {
+    position: relative;
+    color: #333;
+}
+
+#close-modal {
+    position: absolute;
+    top: -20px;
+    right: -75px;
+    padding: 8px;
+    background-color: red;
+    border: none;
+    font-size: 35px;
+    color: white;
+    padding-top: 4px;
+    width: 55px;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    transition: 0.3s all linear;
+}
+
+#close-modal:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
+.removeModal {
+    display: none;
+}
+
+.grid-form-types {
+    padding: 20px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-form-types button {
+    display: flex;
+    background-color: transparent;
+    border: 1px solid rgb(158, 157, 157);
+    gap: 10px;
+    font-size: 12px;
+    align-items: center;
+    padding: 2px;
+    transition: var(--transition);
+    min-width: 240px;
+}
+
+.grid-form-types button i {
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.grid-form-types button p {
+    font-weight: 600;
+    padding-right: 10px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    top: 2px;
+}
+
+.grid-form-types button:hover {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.grid-form-types button:hover .grid-form-types button p {
+    color: white !important;
+}
+
+#close-modal {
+    top: -20px;
+    right: -75px;
+}
+
+@media screen and (max-width:1200px) {
+    .grid-form-types button p {
+        font-size: 13px;
+    }
+
+    #close-modal {
+        top: -30px;
+        right: -85px;
+    }
+}

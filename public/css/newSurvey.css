@@ -1,0 +1,544 @@
+/* New Survey CSS */
+.survey-container {
+    padding: 20px;
+    margin: 20px;
+    height: auto;
+}
+
+.form-navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-navbar button {
+    width: 60px;
+    height: 60px;
+    margin-right: 6px;
+    background-color: black;
+    border: none;
+    color: white;
+    transition: var(--transition);
+    font-size: 25px;
+    margin-top: 8px;
+}
+
+.form-navbar button:hover {
+    background-color: rgb(64, 63, 63);
+    cursor: pointer;
+}
+
+.form-navbar-left-btns {
+    display: flex;
+}
+
+.form-navbar-right-btns button {
+    background-color: rgb(190, 4, 4);
+}
+
+.flex-question-sidebar {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.flex-question-sidebar>div {
+    /* padding: 20px; */
+    box-shadow: var(--box-shadow);
+}
+
+.form-question-card {
+    width: 70%;
+    background-color: white;
+    min-height: 300px;
+}
+
+.form-question-settings {
+    width: 30%;
+    background-color: white;
+    height: fit-content;
+    padding: 20px;
+}
+
+
+.survey-settings {
+    padding: 0 20px;
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 0;
+}
+
+.survey-settings>div {
+    display: flex;
+    align-items: center;
+}
+
+.survey-settings>div p {
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+@media screen and (max-width:800px) {
+    .modal-container {
+        width: 75%;
+    }
+
+    .modal-container h2 {
+        font-size: 17px;
+    }
+
+    .survey-settings {
+        padding: 0 20px;
+        display: grid;
+        margin: 20px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .survey-settings>div {
+        justify-content: space-between;
+    }
+}
+
+.form-question-card {
+    display: grid;
+    place-items: center;
+}
+
+.form-question-card .quesnDiv {
+    width: 80%;
+    margin: auto;
+    margin: 25px 0;
+    margin-top: 0px;
+}
+
+.form-question-card label {
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    gap: 8px;
+}
+
+.form-question-card input, .form-question-card textarea {
+    background-color: transparent;
+    border: none;
+    width: 90%;
+    font-size: 26px;
+    margin: 20px 0;
+    padding: 5px;
+    padding-bottom: 8px;
+    color: rgb(99, 99, 226);
+    border-bottom: 2px solid rgb(170, 170, 246);
+    margin-left: 15px;
+}
+
+.form-question-card textarea {
+    font-size: 15px;
+    margin-top: 0;
+    height: 120px;
+    padding: 14px;
+    border: 1px solid rgba(181, 178, 178, 0.606);
+    resize: none;
+    color: #333;
+}
+
+.form-question-card input::placeholder {
+    color: rgb(170, 170, 246);
+    font-style: italic;
+    font-weight: lighter;
+}
+
+input:focus, textarea:focus {
+    overflow: hidden;
+    outline: red;
+}
+
+/*  */
+.intro-card {
+    display: flex;
+    padding: 0 !important;
+}
+
+.intro-card .intro-card-thumbnail {
+    width: 50%;
+    height: 500px;
+}
+
+.intro-card .intro-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.intro-card .intro-card-content {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+    height: auto;
+    min-height: 400px;
+
+}
+
+.intro-card label {
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    gap: 8px;
+}
+
+.intro-card input, .intro-card textarea {
+    background-color: transparent;
+    border: none;
+    width: 90%;
+    font-size: 30px;
+    margin: 20px 0;
+    padding: 5px;
+    padding-bottom: 8px;
+    color: rgb(99, 99, 226);
+    border-bottom: 2px solid rgb(170, 170, 246);
+    margin-left: 15px;
+}
+
+.intro-card textarea {
+    font-size: 15px;
+    margin-top: 0;
+    height: 200px;
+    padding: 14px;
+    border: 1px solid rgba(181, 178, 178, 0.606);
+    resize: none;
+    color: #333;
+}
+
+.intro-card input::placeholder {
+    color: rgb(170, 170, 246);
+}
+
+input:focus, textarea:focus {
+    overflow: hidden;
+    outline: red;
+}
+
+input:focus {
+    border-color: rgb(3, 3, 139);
+}
+
+#questionNum {
+    color: rgb(5, 5, 173);
+    font-size: 19px;
+    position: relative;
+    top: -2px;
+}
+
+#questionNum i {
+    position: relative;
+    top: -4px;
+    font-size: 20px;
+    color: rgb(9, 9, 228);
+}
+
+.form-question-settings-link {
+    display: flex;
+}
+
+.form-question-settings-link>div {
+    height: 45px;
+}
+
+.form-question-settings-link .link-icon i {
+    position: relative;
+    top: -4px;
+}
+
+.form-question-settings-link .link-icon {
+    background-color: black;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 27px;
+    width: 45px;
+}
+
+.form-question-settings-link .image-link {
+    width: 80%;
+    font-size: 15px;
+}
+
+.form-question-settings-link .image-link input {
+    height: 45px;
+    border: 1px solid rgba(51, 51, 51, 0.36);
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.form-question-settings p {
+    margin-bottom: 8px;
+}
+
+
+@media screen and (max-width:1200px) {
+    .flex-question-sidebar {
+        flex-direction: column;
+    }
+
+    .flex-question-sidebar>div {
+        width: 100%;
+    }
+
+    .intro-card {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .intro-card>div {
+        margin: 0;
+        width: 100% !important;
+    }
+
+    .intro-card .intro-card-thumbnail {
+        height: 250px;
+    }
+
+    .form-question-card>div {
+        width: 100%;
+        margin: auto;
+    }
+
+    .form-question-settings p {
+        font-size: 17px;
+    }
+
+    .form-question-settings {
+        padding: 30px;
+    }
+
+    .intro-card .intro-card-content {
+        height: fit-content;
+        margin-top: 20px;
+    }
+}
+
+.iconInput {
+    display: flex;
+    height: 50px;
+}
+
+.iconInput>div:first-child {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    width: 50px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+}
+
+.iconInput>div:first-child i {
+    position: relative;
+    top: -5px;
+}
+
+.iconInput>div:last-child input {
+    all: unset;
+    background-color: transparent;
+    border: 1px solid black;
+    height: 48px;
+    font-size: 20px;
+    padding: 0 4px;
+    width: 240px;
+    letter-spacing: 3px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+
+}
+
+.iconInput>div:last-child {
+    width: 100%;
+}
+
+.iconInput>div:last-child .linkInput {
+    max-width: 450px;
+}
+
+.linkInput::placeholder {
+    font-weight: lighter;
+    text-align: center;
+}
+
+
+#choiceList li {
+    list-style: none;
+}
+
+#choiceList li input {
+    all: unset;
+    border: 1px solid rgb(0, 0, 0);
+    width: 200px;
+    margin: 4px 0;
+    padding: 3px;
+    text-align: center;
+    color: rgb(112, 112, 222);
+    height: 27px
+}
+
+#choiceList li input::placeholder {
+    font-weight: 100;
+    color: rgba(51, 51, 51, 0.402);
+}
+
+#choiceList li span {
+    width: 27px !important;
+    background-color: rgb(2, 2, 2);
+    border: 1px solid black;
+    padding: 6.5px;
+    color: white;
+    text-transform: uppercase;
+}
+
+#choiceList li button {
+    color: red;
+    padding: 5px;
+    font-size: 23px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+    transition: var(--transition);
+    background: transparent;
+    border: none;
+}
+
+#choiceList li button:hover {
+    color: black;
+}
+
+.form-question-card {
+    padding: 20px 0;
+    padding-bottom: 1rem;
+}
+
+#viewMode .intro-card-thumbnail {
+    width: 40%;
+}
+
+#viewMode .intro-card-content {
+    padding: 0 35px;
+    width: 60%
+}
+
+#viewMode .intro-card-content h1 {
+    color: var(--blue);
+    margin-bottom: 8px;
+}
+
+#viewMode .intro-card-content p {
+    color: #333;
+    margin-bottom: 12px;
+}
+
+#viewMode .form-question-card {
+    height: auto;
+    min-height: 0;
+    padding-top: 0;
+}
+
+#viewMode .form-question-card .quesnDiv {
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+#viewMode .form-question-card .quesnDiv .viewQuestion {
+    text-transform: capitalize;
+    color: var(--blue);
+    margin-bottom: 8px;
+}
+
+#viewMode .form-question-card .quesnDiv .viewDescription {
+    color: rgb(150, 147, 147);
+}
+
+#viewMode .form-question-card .quesnDiv .viewAnswer {
+    /* all: unset; */
+    border: 1px solid rgba(165, 163, 163, 0.599);
+    width: 100%;
+    padding: 20px;
+    margin: 15px 0;
+    font-size: 18px;
+    height: 130px;
+}
+
+#viewMode #choiceList .optionSerial {
+    background-color: transparent;
+    color: rgb(6, 6, 136);
+    border: none;
+    font-size: 18px;
+    position: absolute;
+    top: -7px;
+}
+
+#viewMode #choiceList li {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+#viewMode #choiceList p {
+    font-size: 16px;
+    margin-left: 30px;
+    width: 80%;
+}
+
+#viewMode #choiceList input {
+    border: none;
+    border-bottom: 1px solid var(--blue);
+    width: fit-content;
+}
+
+@media screen and (max-width:800px) {
+    #viewMode .form-question-card .quesnDiv {
+        width: 100%;
+        padding: 0 36px;
+    }
+
+    #viewMode #choiceList p {
+        font-size: 16px;
+        margin-left: 30px;
+        width: 100%;
+    }
+
+    #viewMode .intro-card-content {
+        padding: 25px;
+    }
+
+    #viewMode .survey-container {
+        padding: 0;
+    }
+}
+
+.userInfo input {
+    margin: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#viewMode .question {
+    all: unset;
+    text-transform: capitalize;
+    color: var(--blue);
+    font-size: 22px;
+    margin-bottom: 8px;
+    height: 30px;
+}
+
+#autoResize {
+    all: unset;
+    display: block;
+    overflow: hidden;
+    resize: none;
+    border: none !important;
+    padding: 0 !important;
+    transition: var(--transition);
+    border-bottom: 2px solid rgb(123, 123, 255) !important;
+}
