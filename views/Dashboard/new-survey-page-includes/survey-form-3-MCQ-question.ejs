@@ -1,0 +1,68 @@
+<div class="survey-form">
+    <input type="text" value="1" name="questionNumber" class="questionNumber">
+    <div class="flex-question-sidebar">
+        <div class="form-question-card">
+            <div id="errorContainer">
+                <p>Survey Name Field Can't Be Empty</p> <button id="closeErrorContainer" type="button"><i class="bi
+            bi-x"></i></button>
+            </div>
+            <div class="quesnDiv">
+                <label for=""><span id="questionNum"><i class="bi
+                bi-arrow-right"></i>
+                        <span class="questionNum">0</span></span> Multiple Choice Question </label>
+                <input class="validateRequired
+        validateQuestion question" type="text" placeholder="Type your question here" name="surveyName">
+                <input type="hidden" name="questionType" class="setQuestionType" value="MCQ">
+                <div>
+                    <input type="hidden" name="numOfOptions" value="3" class="numOfOptions" id="">
+                    <ul id="choiceList">
+                        <li> <span class="optionSerial">A</span><input class="validateRequired
+                    validateOption" placeholder="Enter Option" type="text"></li>
+                        <li><span class="optionSerial">B</span><input class="validateRequired
+                    validateOption" placeholder="Enter Option" type="text"></li>
+                        <li><span class="optionSerial">C</span><input class="validateRequired
+                    validateOption" placeholder="Enter Option" type="text">
+                            <button id="deleteChoiceBtn" type="button"><i class="bi
+                        bi-trash"></i></button>
+                        </li>
+                    </ul>
+                    <button style="background-color:
+            teal; border:none" class="settingsBtn" id="addChoice" type="button"> Add Option +</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-question-settings">
+            <div style="display:
+    flex;align-items:center;
+    justify-content:space-between">
+                <p style="margin-top:14px">Required</p>
+                <button type="button" class="toggleBtn "><span class="toggleActive"></span></button>
+                <input type="hidden" value="Yes" class="toggleInput" name="acceptingResponses">
+            </div>
+            <div>
+                <p>Correct Option</p>
+                <div id="correctChoice">
+                    <button type="button">A</button>
+                    <button type="button">B</button>
+                    <button type="button">C</button>
+                </div>
+                <input class="correctChoice
+        validateRequired
+        validateCorrectAns" type="hidden">
+            </div>
+        </div>
+    </div>
+    <div class="form-navbar">
+        <div class="form-navbar-left-btns">
+            <div><button id="addNewForm" type="button"><i class="bi bi-plus"></i></button>
+            </div>
+            <div><button type="button" id="duplicateForm" style="transform:
+        rotate(90deg);"><i class="bi bi-layers"></i></button>
+            </div>
+        </div>
+        <div class="form-navbar-right-btns">
+            <div><button type="button" id="deleteForm"><i class="bi bi-trash"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

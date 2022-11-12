@@ -1,0 +1,35 @@
+<aside id="sidebar">
+    <div class="top">
+        <div class="logo">
+            <h2>SurveyIt</h2>
+        </div>
+        <div class="close"
+             id="close-btn">
+            <i class="bi bi-x"><i class="bi bi-x-lg"></i></i>
+        </div>
+    </div>
+    <div class="sidebar sidebar-inactive">
+        <a href="/dashboard"
+           class="<%= path === '/dashboard' ? 'active' : '' %>">
+            <span class="bootstrao-icons"><i class="bi bi-grid-1x2-fill"></i></i></span>
+            <h3>Dashboard</h3>
+        </a>
+        <a href="#">
+            <span class="bootstrao-icons"><i class="bi bi-person-circle"></i></span>
+            <h3>Profile</h3>
+        </a>
+        <a href="/surveys"
+           class="<%= path === '/surveys' ? 'active' : '' %>">
+            <span class="bootstrao-icons"><i class="bi bi-ui-radios"></i></span>
+            <h3>Surveys</h3>
+        </a>
+        <a href="#">
+            <span class="bootstrao-icons"><i class="bi bi-bar-chart-line-fill"></i></span>
+            <h3>Responses</h3>
+        </a>
+        <a href="#">
+            <span class="bootstrao-icons"><i class="bi bi-box-arrow-right"></i></span>
+            <h3>Logout</h3>
+        </a>
+    </div>
+</aside>

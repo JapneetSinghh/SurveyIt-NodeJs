@@ -1,0 +1,51 @@
+<div class="survey-form">
+    <input type="hidden" value="0" name="questionNumber" class="questionNumber">
+    <div class="flex-question-sidebar">
+        <div class="form-question-card
+        intro-card">
+            <div class="intro-card-thumbnail">
+                <img id="thumbnailImage" src="<%if(editMode){%>
+                        <%= survey.thumbnailImage%>
+                        <%}else{%>
+                            https://images.pexels.com/photos/1323020/pexels-photo-1323020.jpeg?auto=compress&cs=tinysrgb&w=600
+                        <%}%>" alt="">
+            </div>
+            <div class="intro-card-content">
+                <div style="width: 100%;" id="errorContainer">
+                    <p>Survey Name Field Can't Be Empty</p> <button id="closeErrorContainer" type="button"><i
+                            class="bi bi-x"></i></button>
+                </div>
+                <label for=""><span id="questionNum"><i class="bi
+                        bi-arrow-right"></i>
+                        <span class="questionNum">0</span></span> Enter Name Of Your Survey: </label>
+                <input class="validateRequired validateSurveyHeader question" type="text" placeholder="Survey Name"
+                    name="surveyName" value="<%if(editMode){%><%= survey.name%><%}%>">
+                <input type="hidden" name="questionType" class="setQuestionType" value="survayIntro">
+                <textarea class="validateRequired
+                validateSurveyHeader questionDesc" placeholder="Survey Description"
+                    name="surveyDescription"><%if(editMode){%><%= survey.description%><%}%></textarea>
+            </div>
+        </div>
+        <div class="form-question-settings">
+            <p>Enter Image Link</p>
+            <div class="form-question-settings-link">
+                <div class="link-icon">
+                    <i class="bi bi-link-45deg"></i>
+                </div>
+                <div class="image-link">
+                    <input class="validateRequired" type="link"
+                        value="<%if(editMode){%><%= survey.thumbnailImage%><%}else{%>https://images.pexels.com/photos/1323020/pexels-photo-1323020.jpeg?auto=compress&cs=tinysrgb&w=600<%}%>"
+                        name="thumbnailImage" id="toBeUpdated">
+                </div>
+            </div>
+            <button class="settingsBtn" type="button" id="updateImageLink">Update Image</button>
+        </div>
+    </div>
+    <div class="form-navbar">
+        <div class="form-navbar-left-btns">
+            <div><button id="addNewForm" type="button"><i class="bi bi-plus"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>

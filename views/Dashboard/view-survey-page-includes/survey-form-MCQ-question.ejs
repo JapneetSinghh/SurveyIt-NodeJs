@@ -1,0 +1,35 @@
+<%- include('./survey-form-head')%>
+    <label for=""><span id="questionNum"><i class="bi bi-arrow-right"></i><span class="questionNum">0</span></span>
+    </label>
+    <input type="hidden" value="1" name="questionNumber" class="questionNumber">
+    <input type="hidden" name="" class="question" value="<%= data.question%>">
+    <h2 class="viewQuestion">
+        <%= data.question%>
+            <%if(data.isRequired==='Yes'){%> <span
+                    style="color: rgb(90, 4, 4);font-size:18px;position:relative;top:-4px">*</span>
+                <%}%>
+    </h2>
+    <div>
+        <input type="hidden" name="numOfOptions" value="<%=data.numberOfOptions%>" class="numOfOptions" id="">
+        <ul id="choiceList">
+            <% data.options.forEach(optionVal=>{%>
+                <li> <span class="optionSerial">A</span>
+                    <p>
+                        <%= optionVal.option%> <input value="<%= optionVal.option%>" type="hidden"
+                                class="validateOption">
+                    </p>
+                </li>
+                <%})%>
+        </ul><br>
+        <p style="color: rgb(146, 146, 146);margin-bottom:10px ;">
+            Select correct option</p>
+        <div id="correctChoice">
+            <%data.options.forEach(optionVal=>{%>
+                <button type="button">
+                    <%= optionVal.serial%>
+                </button>
+                <% })%>
+        </div>
+        <input type="hidden" value="" class="validateRequired answer correctOption">
+    </div>
+    <%- include('./survey-form-end')%>

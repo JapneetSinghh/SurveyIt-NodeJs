@@ -1,0 +1,12 @@
+<div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items:center;border-bottom: 1px solid rgba(51, 51, 51,0.539); margin: auto;"
+       class="dashboard-header">
+       <h2><a style="color: blue;" href="/surveys">Surveys</a> / <%if(!viewMode){%>
+                     <%=editMode?"Edit":"New"%> Survey
+                            <%}else{%>
+                                   <%= survey.name%>
+                                          <%}%>
+       </h2>
+       <%if(!viewMode){%> <button class="btnPublish" id="submitBtnCheck" type="button">
+                     <%=editMode ?'Save Changes':'Publish Survey'%></a>
+                            <%}%>
+</div>

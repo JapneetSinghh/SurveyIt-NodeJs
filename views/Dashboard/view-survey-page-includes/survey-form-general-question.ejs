@@ -1,0 +1,20 @@
+<%- include('./survey-form-head')%>
+    <label for=""><span id="questionNum"><i class="bi bi-arrow-right"></i><span class="questionNum">0</span></span>
+    </label>
+    <input type="hidden" value="1" name="questionNumber" class="questionNumber">
+    <input type="hidden" name="questionType" value="generalQuestion" class="setQuestionType">
+    <input type="hidden" name="" class="question" value="<%= data.question%>">
+    <h2 class="viewQuestion">
+        <%= data.question%>
+            <%if(data.isRequired==='Yes'){%> <span
+                    style="color: rgb(90, 4, 4);font-size:18px;position:relative;top:-4px">*</span>
+                <%}%>
+    </h2>
+    <% if(data.questionDescription!=='' ){%>
+        <p style="color: rgb(152, 152, 152);" class="viewDescription">
+            <%= data.questionDescription%>
+        </p>
+        <% }%>
+            <textarea placeholder="Type your answer here" name="" id="autoResize"
+                class="viewAnswer answer questionDesc <%=data.isRequired==='Yes'?'validateRequired':''%>"></textarea>
+            <%- include('./survey-form-end')%>

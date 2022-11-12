@@ -1,0 +1,24 @@
+<%- include('./survey-form-head')%>
+    <label for=""><span id="questionNum"><i class="bi bi-arrow-right"></i><span class="questionNum">0</span></span>
+    </label>
+    <input type="hidden" value="1" name="questionNumber" class="questionNumber">
+    <input type="hidden" name="" class="question" value="<%= data.question%>">
+    <h2 class="viewQuestion">
+        <%= data.question%>
+            <%if(data.isRequired==='Yes'){%> <span
+                    style="color: rgb(90, 4, 4);font-size:18px;position:relative;top:-4px">*</span>
+                <%}%>
+    </h2>
+    <div style="margin:20px 0;">
+        <div class="iconInput">
+            <div>
+                <i class="bi bi-telephone-fill"></i>
+            </div>
+            <div>
+                <input type="tel" placeholder="7982163675" name="phoneNumber"
+                    class="answer  <%=data.isRequired==='Yes'?'validateRequired':''%>">
+                <input type="hidden" name="questionType" value="contactNumber" class="setQuestionType">
+            </div>
+        </div>
+    </div>
+    <%- include('./survey-form-end')%>

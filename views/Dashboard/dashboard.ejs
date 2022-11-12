@@ -1,0 +1,64 @@
+<%- include('../includes/head.ejs') %>
+    <div class="container">
+        <%- include('./dashboard-includes/sidebar.ejs') %>
+            <main class="main">
+                <%- include('./dashboard-includes/topbar.ejs') %>
+                    <!-- WORKSPACE NAME HEADER -->
+                    <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items: center;border-bottom: 1px solid rgba(51, 51, 51, 0.539); margin: auto;"
+                        class="dashboard-header">
+                        <h2>Sidak's Workspace</h2>
+                        <a class="btn2" href="/newSurvey"> Start New Survey <i class="bi bi-plus-square-fill"></i></a>
+                    </div>
+                    <!-- RECENT SURVEYS -->
+                    <div style="padding:10px 20px; color:gray; padding-bottom: 0;display:flex; justify-content:space-between; align-items: center;width:
+                    97%;margin: auto;">
+                        <h2>Your Recent Surveys</h2>
+                        <p class="text-muted"><a class="text-muted" href="/">View All...</a></p>
+                    </div>
+                    <!-- Survey grids -->
+                    <div id="surveyList">
+                        <%for(let i=1;i<=4;i++){%>
+                            <!-- Survey Card Begins -->
+                            <div class="survey-card-dashboard">
+                                <div class="survey-image">
+                                    <img src="data:image/jpeg;base64,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"
+                                        alt="">
+                                </div>
+                                <!-- Survey Data -->
+                                <div class="survey-data">
+                                    <h2>Best Color Codes For Website</h2>
+                                    <div class="text-muted">
+                                        <p>Responses: 5</p>
+                                        <p>Last Updated: 2022-03-11</p>
+                                        <p>Created On: 2022-01-11</p>
+                                    </div>
+                                    <!-- Dot menu -->
+                                    <div class="dot-menu">
+                                        <div style="padding: 10px; cursor: pointer; font-size: 18px;" class="dropdown">
+                                            <span class="profile-navbar"><i
+                                                    class="bi bi-three-dots-vertical"></i></span>
+                                            <div class="dropdown-content">
+                                                <div class="dropdown-container">
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="/">Share</a></li>
+                                                        <li><a href="/">Responses</a></li>
+                                                        <li><a href="/mySurveys">View</a></li>
+                                                        <li><a href="/">Edit</a></li>
+                                                        <li>
+                                                            <form action=""><button class="delete-button"
+                                                                    type="submit">Delete</button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%}%>
+                    </div>
+                    <%- include('./dashboard-includes/footer.ejs') %>
+            </main>
+    </div>
+    <%- include('../includes/end.ejs') %>

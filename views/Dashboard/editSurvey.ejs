@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+    <div class="container">
+        <%- include('./dashboard-includes/sidebar.ejs') %>
+            <main class="main modalMain">
+                <%- include('./dashboard-includes/addFormModal.ejs') %>
+                    <%- include('./dashboard-includes/topbar.ejs') %>
+                        <!-- WORKSPACE NAME HEADER -->
+                        <form action="/editSurvey" method="post">
+                            <!-- SURVEY HEADER -->
+                            <%- include('./new-survey-page-includes/survey-header.ejs')%>
+                                <!-- SURVEY SETTINGS -->
+                                <div class="survey-settings">
+                                    <div>
+                                        <p>Accepting Responses</p>
+                                        <button type="button"
+                                            class="toggleBtn <%= survey.acceptingResponses==='No'?'unchecked':''%>">
+                                            <span class="toggleActive"></span></button>
+                                        <input type="hidden" value="<%=survey.acceptingResponses%>"
+                                            name="acceptingResponses">
+                                    </div>
+                                    <div>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            <p>Share Globally</p>
+                                        </label>
+                                        <button type="button"
+                                            class="toggleBtn <%= survey.shareGlobally==='No'?'unchecked':''%>">
+                                            <span class="toggleActive"></span></button>
+                                        <input type="hidden" value="<%=survey.shareGlobally%>" name="shareGloabally">
+                                    </div>
+                                </div>
+                                <div class="survey-container">
+                                    <!-- Form 1 Survey Details -->
+                                    <%- include('./new-survey-page-includes/survey-form-1-intro.ejs')%>
+                                        <% var numOfQues=survey.numOfQues; var questionsData=survey.questionsData; %>
+                                            <%- helper.setForms(questionsData)%>
+                                </div>
+                                <button id="#submitForm" type="submit"></button>
+                                <input type="hidden" name="surveyId" value="<%=survey._id%>">
+                        </form>
+                        <%- include('./dashboard-includes/footer.ejs')%>
+            </main>
+    </div>
+    <script src="/js/surveyForm.js"></script>
+    <script src="/js/updateImageSurvey.js"></script>
+    <script src="/js/mcqChoice.js"></script>
+    <%- include('../includes/end.ejs') %>

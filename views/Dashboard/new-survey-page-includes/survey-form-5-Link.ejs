@@ -1,0 +1,55 @@
+<div class="survey-form">
+    <input type="text" value="1" name="questionNumber" class="questionNumber">
+    <div class="flex-question-sidebar">
+        <div class="form-question-card">
+            <div id="errorContainer">
+                <p>Survey Name Field Can't Be Empty</p> <button id="closeErrorContainer" type="button"><i
+                        class="bi bi-x"></i></button>
+            </div>
+            <div class="quesnDiv">
+                <label for=""><span id="questionNum"><i class="bi
+                    bi-arrow-right"></i>
+                        <span class="questionNum">0</span></span> Link</label>
+                <input class="validateRequired validateQuestion question" type="text"
+                    placeholder="Type your question here" name="surveyName">
+                <input type="hidden" name="questionType" class="setQuestionType" value="link">
+                <div style="margin:
+20px;display:grid;place-items:center">
+                    <div class="iconInput">
+                        <div>
+                            <i class="bi
+        bi-link-45deg"></i>
+                        </div>
+                        <div>
+                            <input disabled
+                                style="width: 100%;max-width:400px;text-align:left;font-size:17px;letter-spacing:1px;"
+                                type="tel" name="phoneNumber">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-question-settings">
+            <div style="display:
+flex;align-items:center;
+justify-content:space-between">
+                <p style="margin-top:14px">Required</p>
+                <button type="button" class="toggleBtn "><span class="toggleActive"></span></button>
+                <input type="hidden" value="Yes" class="toggleInput" name="acceptingResponses">
+            </div>
+        </div>
+    </div>
+    <div class="form-navbar">
+        <div class="form-navbar-left-btns">
+            <div><button id="addNewForm" type="button"><i class="bi bi-plus"></i></button>
+            </div>
+            <div><button type="button" id="duplicateForm" style="transform:
+rotate(90deg);"><i class="bi bi-layers"></i></button>
+            </div>
+        </div>
+        <div class="form-navbar-right-btns">
+            <div><button type="button" id="deleteForm"><i class="bi bi-trash"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
