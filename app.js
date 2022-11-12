@@ -38,14 +38,14 @@ app.use(bodyParse.urlencoded({ extended: false }));
 // Importing routes
 const homeRoutes = require('./Routes/home');
 const surveyRoutes = require('./Routes/survey');
-// const responseRoutes = require('./Routes/responses');
+const responseRoutes = require('./Routes/responses');
 
 
 
 // Setting up the routes
 app.use('/', homeRoutes.router);
 app.use(surveyRoutes.router);
-// app.use(responseRoutes.router);
+app.use(responseRoutes.router);
 
 // CONNECTING TO DATABASE AND STARTING THE SERVER
 mongoose.connect(MONGODB_URI)
