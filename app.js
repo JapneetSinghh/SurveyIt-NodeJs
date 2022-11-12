@@ -16,16 +16,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 const User = require('./Models/users');
 
 // Adding the user data to req
-// app.use((req, res, next) => {
-//   User.findById(`636ce94855c160317edfa7c9`)
-//     .then(user => {
-//       req.user = user;
-//       next();
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-// });
+app.use((req, res, next) => {
+  User.findById(`636ce94855c160317edfa7c9`)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+});
 
 // Setting the view engine ejs
 app.set('view engine', 'ejs');
