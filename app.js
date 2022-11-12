@@ -37,14 +37,14 @@ app.use(bodyParse.urlencoded({ extended: false }));
 
 // Importing routes
 const homeRoutes = require('./Routes/home');
-// const surveyRoutes = require('./Routes/survey');
+const surveyRoutes = require('./Routes/survey');
 // const responseRoutes = require('./Routes/responses');
 
 
 
 // Setting up the routes
 app.use('/', homeRoutes.router);
-// app.use(surveyRoutes.router);
+app.use(surveyRoutes.router);
 // app.use(responseRoutes.router);
 
 // CONNECTING TO DATABASE AND STARTING THE SERVER
