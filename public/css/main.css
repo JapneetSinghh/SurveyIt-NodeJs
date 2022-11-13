@@ -419,7 +419,7 @@ small {
     border-radius: 10px;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1100px) {
     #surveyList {
         padding: 20px;
         display: grid;
@@ -576,7 +576,7 @@ footer p:last-child {
     max-width: 700px;
 }
 
-#shareSurvey .grid {
+#shareSurvey .grid, .survey-content .grid {
     display: grid;
     margin: 20px 0;
     grid-template-columns: repeat(2, 1fr);

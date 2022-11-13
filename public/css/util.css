@@ -46,7 +46,7 @@
     gap: 5px;
 }
 
-.survey-card-buttons .icon-button {
+.survey-card-buttons .icon-button, table .icon-button {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -57,13 +57,22 @@
     transition: 0.3s all linear;
 }
 
-.survey-card-buttons .icon-button i {
+table .icon-button {
+    font-size: 13px;
+    padding: 5px 14px;
+}
+
+.survey-card-buttons .icon-button i, table .icon-button i {
     margin-bottom: 5px;
 }
 
-.survey-card-buttons .viewBtn {
+.survey-card-buttons .viewBtn, table .viewBtn {
     background-color: rgb(2, 44, 179);
     color: white;
+}
+
+table .viewBtn {
+    padding: 0 15px;
 }
 
 .survey-card-buttons .viewBtn:hover {
@@ -71,23 +80,23 @@
     color: white;
 }
 
-.survey-card-buttons .shareBtn {
+.survey-card-buttons .shareBtn, table .shareBtn {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
 }
 
-.survey-card-buttons .shareBtn:hover {
+.survey-card-buttons .shareBtn:hover, table .shareBtn:hover {
     opacity: 0.6;
 }
 
-.survey-card-buttons .deleteBtn {
+.survey-card-buttons .deleteBtn, table .deleteBtn {
     background-color: rgb(179, 2, 2);
     border: none;
     color: white;
     padding: 13px 14px;
 }
 
-.survey-card-buttons .deleteBtn:hover {
+.survey-card-buttons .deleteBtn:hover, table .deleteBtn:hover {
     background-color: rgb(242, 5, 5);
     color: white;
     cursor: pointer;

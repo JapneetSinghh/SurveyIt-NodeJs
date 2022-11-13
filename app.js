@@ -6,8 +6,6 @@ const app = express();
 const mongoose = require('mongoose');
 // MONGODB CONNECTION LINK
 const MONGODB_URI = `mongodb+srv://japneetSinghh:sidak123@cluster0.efo4pz7.mongodb.net/SurveyIt?retryWrites=true&w=majority`;
-// SETTING UP THE PORT FOR SERVER
-
 
 // Serving the Public Folder As Static For Assets And CSS
 const path = require('path');

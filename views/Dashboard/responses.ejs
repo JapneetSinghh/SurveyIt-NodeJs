@@ -1,0 +1,95 @@
+<%- include('../includes/head.ejs') %>
+    <div class="container">
+        <%- include('./dashboard-includes/sidebar.ejs') %>
+            <main class="main modalMain">
+                <%- include('./dashboard-includes/addFormModal.ejs') %>
+                    <%- include('./dashboard-includes/topbar.ejs') %>
+                        <!-- WORKSPACE NAME HEADER -->
+                        <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items:center;border-bottom: 1px solid rgba(51, 51, 51,0.539); margin: auto;"
+                            class="dashboard-header">
+                            <h2><a style="color: blue;" href="/surveys">Surveys</a> / Responses
+                            </h2>
+                        </div>
+                        <section id="responses">
+                            <article class="responses-container">
+                                <div class="responses-header">
+                                    <h2 style="color: #333;">Meet And Greet 2023</h2 style="color: #333;">
+                                    <p class="status-green" style="font-size: 17px; color: rgb(154, 153, 153);">
+                                        Accepting Responses
+                                        <span></span>
+                                    </p>
+                                </div>
+                                <div class="survey-data">
+                                    <div class="survey-content">
+                                        <div class="grid">
+                                            <p> <span class="surveyData">Date Created: </span>10 Nov 2022
+                                            </p>
+                                            <p><span class="surveyData">Last Updated: </span>12 Nov 2022
+                                            </p>
+                                            <p><span class="surveyData">Questions: </span>5
+                                            </p>
+                                            <p><span class="surveyData">Responses: </span>4
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-muted">Recent Responses</p>
+                                    <div class="responses-table">
+                                        <table>
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:80px;text-align:center">1</td>
+                                                <td style=" min-width: 170px;">Japneet Singh</td>
+                                                <td>Japneet8208@gmail.com</td>
+                                                <td style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                                    <a class="icon-button viewBtn" href=""><i class="bi bi-eye"></i>
+                                                        View</a>
+                                                    <form action="/deleteSurvey/" method="post">
+                                                        <button type="submit" class="deleteBtn icon-button"><i
+                                                                class="bi bi-trash"></i> Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:80px;text-align:center">1</td>
+                                                <td style=" min-width: 170px;">Japneet Singh</td>
+                                                <td>Japneet8208@gmail.com</td>
+                                                <td style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                                    <a class="icon-button viewBtn" href=""><i class="bi bi-eye"></i>
+                                                        View</a>
+                                                    <form action="/deleteSurvey/" method="post">
+                                                        <button type="submit" class="deleteBtn icon-button"><i
+                                                                class="bi bi-trash"></i> Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:80px;text-align:center">1</td>
+                                                <td style=" min-width: 180px;">Japneet Singh Baluja</td>
+                                                <td>Japneet8208@gmail.com</td>
+                                                <td style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                                    <a class="icon-button viewBtn" href="/getResponse"><i
+                                                            class="bi bi-eye"></i>
+                                                        View</a>
+                                                    <form action="/deleteSurvey/" method="post">
+                                                        <button type="submit" class="deleteBtn icon-button"><i
+                                                                class="bi bi-trash"></i> Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <a style="width: 87px;" href="" class="btn2">View All</a>
+                            </article>
+
+                        </section>
+            </main>
+    </div>
+    <%- include('../includes/end.ejs') %>

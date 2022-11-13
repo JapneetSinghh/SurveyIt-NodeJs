@@ -22,3 +22,15 @@ exports.getSurvey = (req, res, next) => {
             console.log(err);
         })
 }
+exports.getResponses = (req, res, next) => {
+    res.render('Dashboard/responses', {
+        pageTitle: 'Survey It | Responses',
+        path: "/responses"
+    });
+}
+exports.getFullResponse = (req, res, next) => {
+    res.render('Dashboard/fullResponse', {
+        pageTitle: 'Survey It | Responses',
+        path: "/responses"
+    });
+}
