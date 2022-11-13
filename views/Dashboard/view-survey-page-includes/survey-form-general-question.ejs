@@ -4,6 +4,8 @@
     <input type="hidden" value="1" name="questionNumber" class="questionNumber">
     <input type="hidden" name="questionType" value="generalQuestion" class="setQuestionType">
     <input type="hidden" name="" class="question" value="<%= data.question%>">
+    <input type="hidden" value="<%= data.isRequired%>" class="toggleInput" name="acceptingResponses">
+
     <h2 class="viewQuestion">
         <%= data.question%>
             <%if(data.isRequired==='Yes'){%> <span

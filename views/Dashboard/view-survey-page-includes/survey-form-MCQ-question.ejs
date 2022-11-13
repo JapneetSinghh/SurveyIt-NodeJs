@@ -1,8 +1,12 @@
 <%- include('./survey-form-head')%>
     <label for=""><span id="questionNum"><i class="bi bi-arrow-right"></i><span class="questionNum">0</span></span>
     </label>
+    <input type="hidden" name="questionType" value="MCQ" class="setQuestionType">
     <input type="hidden" value="1" name="questionNumber" class="questionNumber">
     <input type="hidden" name="" class="question" value="<%= data.question%>">
+    <input type="hidden" value="<%= data.isRequired%>" class="toggleInput" name="acceptingResponses">
+
+    <input type="hidden">
     <h2 class="viewQuestion">
         <%= data.question%>
             <%if(data.isRequired==='Yes'){%> <span
