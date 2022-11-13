@@ -9,13 +9,19 @@
                             <!-- SURVEY HEADER -->
                             <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items:center;border-bottom: 1px solid rgba(51, 51, 51,0.539); margin: auto;"
                                 class="dashboard-header">
-                                <h2><a style="color: blue;" href="/surveys">Surveys</a> / <%if(!viewMode){%>
-                                        <%=editMode?"Edit":"New"%> Survey
-                                            <%}else{%>
-                                                <%= survey.name%>
-                                                    <%}%>
-                                </h2>
-                                <button class="btnPublish" id="submitBtnCheck" type="button">Submit</button>
+                                <%if(!responseMode){%>
+                                    <h2><a style="color: blue;" href="/surveys">Surveys</a> / <%if(!viewMode){%>
+                                            <%=editMode?"Edit":"New"%> Survey
+                                                <%}else{%>
+                                                    <%= survey.name%>
+                                                        <%}%>
+                                    </h2>
+                                    <%}else{%>
+                                        <h2><a style="color: blue;" href="/responses">Responses</a> /
+                                            <%=survey.username%>
+                                        </h2>
+                                        <%}%>
+                                            <button class="btnPublish" id="submitBtnCheck" type="button">Submit</button>
                             </div>
                             <div class="survey-container">
                                 <!-- Form intro -->
@@ -24,7 +30,9 @@
                                     <div class="flex-question-sidebar">
                                         <div style="width: 100%;" class="form-question-card intro-card">
                                             <div class="intro-card-thumbnail">
-                                                <img id="thumbnailImage" src="<%= survey.thumbnailImage%>" alt="">
+                                                <img id="thumbnailImage"
+                                                    src="<%if(responseMode){%><%= surveyData.thumbnailImage%><%}else{%><%= survey.thumbnailImage%><%}%>"
+                                                    alt="">
                                             </div>
                                             <div class="intro-card-content">
                                                 <label style="display: none;" for=""><span id="questionNum"><i
@@ -32,10 +40,18 @@
                                                         <span class="questionNum">0</span></span></label>
                                                 <p style="color: gray;"> Survey Owner: Japneet Singh</p>
                                                 <h1>
-                                                    <%= survey.name%>
+                                                    <%if(responseMode){%>
+                                                        <%= surveyData.name%>
+                                                            <%}else{%>
+                                                                <%= survey.name%>
+                                                                    <%}%>
                                                 </h1>
                                                 <p>
-                                                    <%= survey.description%>
+                                                    <%if(responseMode){%>
+                                                        <%= surveyData.description%>
+                                                            <%}else{%>
+                                                                <%= survey.description%>
+                                                                    <%}%>
                                                 </p>
                                             </div>
                                         </div>
@@ -45,9 +61,11 @@
                                     <div class="userInfo">
                                         <h2 class="viewQuestion">Enter Name</h2>
                                         <input class="validateRequired userDetails" type="text"
-                                            placeholder="Japneet Singh" name="userName">
+                                            value="<%if(responseMode){%> <%=survey.username%><%}%>"
+                                            placeholder="Japneet Singh" value="" name="userName">
                                         <h2 class="viewQuestion">Enter Email</h2>
-                                        <input class="validateRequired userDetails" type="text" value=""
+                                        <input class="validateRequired userDetails" type="text"
+                                            value="<%if(responseMode){%> <%=survey.email%><%}%>"
                                             placeholder="xyz@gmail.com" name="userEmail">
                                     </div>
 

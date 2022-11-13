@@ -10,6 +10,7 @@
                             <h2><a style="color: blue;" href="/surveys">Surveys</a> / <%= survey.name%>
                             </h2>
                         </div>
+
                         <section id="shareSurvey">
                             <h1>
                                 <%= survey.name%>
@@ -38,7 +39,7 @@
                                 </div>
                                 <div>
                                     <input style="letter-spacing: 0; font-size: 15px;"
-                                        value="<%= hostname%>/getSurvey/<%=survey.name%>/<%= survey._id%>"
+                                        value="https://<%= hostname%>/getSurvey/<%=survey.name%>/<%= survey._id%>"
                                         class="linkInput" type="text" name="phoneNumber">
                                 </div>
                             </div>

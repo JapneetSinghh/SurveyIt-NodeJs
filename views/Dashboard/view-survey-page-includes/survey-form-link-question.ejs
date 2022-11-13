@@ -17,8 +17,8 @@
                 <i class="bi bi-link-45deg"></i>
             </div>
             <div>
-                <input class="linkInput answer <%=data.isRequired==='Yes'?'validateRequired':''%>" type="text"
-                    placeholder="Paste Link Here" name="phoneNumber">
+                <input class="linkInput answer <%=data.isRequired==='Yes'?'validateRequired':''%>" type="text" value="<%if(responseMode){%>
+                    <%=data.answer%> <%}%>" placeholder="Paste Link Here" name="phoneNumber">
                 <input type="hidden" name="questionType" value="contactNumber" class="setQuestionType">
             </div>
         </div>

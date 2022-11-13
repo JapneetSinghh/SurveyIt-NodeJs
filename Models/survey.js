@@ -41,6 +41,9 @@ const surveySchema = new Schema({
     questionsData: {
         type: Array,
         required: true
+    },
+    responses: {
+        type: Array
     }
 })
 

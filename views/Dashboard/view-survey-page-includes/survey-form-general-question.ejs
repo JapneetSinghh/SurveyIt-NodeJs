@@ -18,5 +18,5 @@
         </p>
         <% }%>
             <textarea placeholder="Type your answer here" name="" id="autoResize"
-                class="viewAnswer answer questionDesc <%=data.isRequired==='Yes'?'validateRequired':''%>"></textarea>
+                class="viewAnswer answer questionDesc <%=data.isRequired==='Yes'?'validateRequired':''%>"><%if(responseMode){%> <%=data.answer%><%}%></textarea>
             <%- include('./survey-form-end')%>

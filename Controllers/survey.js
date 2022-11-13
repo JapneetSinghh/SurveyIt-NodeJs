@@ -24,7 +24,7 @@ exports.postNewSurvey = (req, res, next) => {
     var lastUpdated = dateCreated; // 7
     const questionsData = []; // 8
     const userId = req.user._id; // 9
-
+    const responses = [];
     console.log(req.body);
     // GETTING  DETAILS OF EVERY QUESTION
     for (var i = 1; i < numOfQues; i++) {
@@ -81,7 +81,8 @@ exports.postNewSurvey = (req, res, next) => {
         dateCreated: dateCreated,
         lastUpdated: lastUpdated,
         numOfQues: numOfQues - 1,
-        questionsData: questionsData
+        questionsData: questionsData,
+        responses: []
     });
     console.log("Desc" + surveyDescription);
     survey.save()
@@ -232,7 +233,8 @@ exports.getViewSurvey = (req, res, next) => {
                 editMode: false,
                 viewMode: true,
                 survey: survey,
-                data: null
+                data: null,
+                responseMode: false
             })
         })
         .catch(err => {
