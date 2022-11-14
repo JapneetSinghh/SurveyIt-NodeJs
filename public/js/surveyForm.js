@@ -144,7 +144,7 @@ const createAndAddNewForm = (getForm) => {
     }).then(() => {
         closeModalBtn.click();
         var top = newSurveyForm.offsetTop;
-        window.scrollTo({ top: top + 100, behavior: 'smooth' });
+        window.scrollTo({ top: top + 200, behavior: 'smooth' });
     })
 }
 // AFTER DUPLICATE OR ADDITION OF NEW FORM NEW BTNS ARE ADDED THEREFORE THEY HAVE TO BE RESELECTED
@@ -697,6 +697,7 @@ vaildationCheckBtn.addEventListener("click", () => {
         btn.click();
     })
     const inputs = document.querySelectorAll('.validateRequired');
+    // var arr = Array.prototype.slice.call(inputs);
     inputs.forEach(input => {
         validate(input);
     });
@@ -709,7 +710,6 @@ vaildationCheckBtn.addEventListener("click", () => {
         console.log("Can't Be Submitted");
     }
 })
-
 const validate = (input) => {
     var inputField = input.parentElement.closest('.survey-form');
     var inputField = inputField.querySelector('.form-question-card');
@@ -740,19 +740,20 @@ const validate = (input) => {
     return validationStatus;
 }
 
+
 // FUNCTION FOR SENDING ERROR TO THE USER
 const validateQuestion = (input, message) => {
     var questionCard = input;
     const errorCard = questionCard.querySelector('#errorContainer');
     errorCard.innerHTML =
         ` 
-              <p>${message}</p> <button id="closeErrorContainer" type="button"><i class="bi bi-x"></i></button> 
+              <p class="">${message}</p> <button id="closeErrorContainer" type="button"><i class="bi bi-x"></i></button> 
             `
     errorCard.style.visibility = "visible";
     errorCard.style.opacity = 1;
     errorCard.style.height = "70px";
     errorCard.style.transform = `scaleY(1)`;
-    var y = errorCard.offsetTop;
+    var y = window.pageYOffset + errorCard.getBoundingClientRect().top;
     window.scrollTo({ top: y, behavior: 'smooth' });
     const closeErrorContainer = document.querySelectorAll('#closeErrorContainer');
     closeErrorContainer.forEach(btn => {

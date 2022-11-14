@@ -617,3 +617,17 @@ footer p:last-child {
     cursor: pointer;
     font-size: 14px;
 }
+
+@media screen and (max-width:800px) {
+    .pageHeading {
+        font-size: 16px;
+    }
+
+
+}
+
+@media screen and (max-width:400px) {
+    .pageHeading {
+        font-size: 15px;
+    }
+}

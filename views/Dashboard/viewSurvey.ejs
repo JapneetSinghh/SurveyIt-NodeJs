@@ -10,7 +10,8 @@
                             <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items:center;border-bottom: 1px solid rgba(51, 51, 51,0.539); margin: auto;"
                                 class="dashboard-header">
                                 <%if(!responseMode){%>
-                                    <h2><a style="color: blue;" href="/surveys">Surveys</a> / <%if(!viewMode){%>
+                                    <h2 class="pageHeading"><a style="color: blue;" href="/surveys">Surveys</a> /
+                                        <%if(!viewMode){%>
                                             <%=editMode?"Edit":"New"%> Survey
                                                 <%}else{%>
                                                     <%= survey.name%>

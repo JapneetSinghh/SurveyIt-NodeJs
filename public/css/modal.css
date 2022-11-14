@@ -116,4 +116,25 @@
         top: -30px;
         right: -85px;
     }
+
+}
+
+@media screen and (max-width:800px) {
+    .modal-container {
+        width: 300px !important;
+    }
+
+    .grid-form-types {
+        padding: 0;
+        margin-top: 25px;
+    }
+
+    #close-modal {
+        top: -82px;
+        right: -30px;
+        border-radius: 0;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
 }
