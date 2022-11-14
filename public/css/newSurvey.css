@@ -515,6 +515,11 @@ input:focus {
     #viewMode .survey-container {
         padding: 0;
     }
+
+    .survey-container {
+        margin: 0px;
+    }
+
 }
 
 .userInfo input {

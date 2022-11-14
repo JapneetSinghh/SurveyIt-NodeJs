@@ -91,11 +91,12 @@
 
                                                                         <% } }) %>
                             </div>
-                            <button id="#submitForm" type="submit"></button>
+                            <button style="display: hidden;" id="#submitForm" type="submit"></button>
                             <input type="hidden" name="surveyId" value="<%=survey._id%>">
                         </form>
                         <%- include('./dashboard-includes/footer.ejs')%>
             </main>
     </div>
     <script src="/js/surveyForm.js"></script>
+    <script src="/js/mcqForm.js"></script>
     <%- include('../includes/end.ejs') %>

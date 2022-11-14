@@ -34,7 +34,7 @@
                                         <% var numOfQues=survey.numOfQues; var questionsData=survey.questionsData; %>
                                             <%- helper.setForms(questionsData)%>
                                 </div>
-                                <button id="#submitForm" type="submit"></button>
+                                <button style="display: hidden;" id="#submitForm" type="submit"></button>
                                 <input type="hidden" name="surveyId" value="<%=survey._id%>">
                         </form>
                         <%- include('./dashboard-includes/footer.ejs')%>

@@ -66,9 +66,10 @@
                                                             <th>Name</th>
                                                             <th>Email</th>
                                                             <th>Actions</th>
-                                                            <%var count=0; if(3<=survey.responses.length ){ count=2;
-                                                                }else{ count=survey.responses.length-1; }%>
-                                                                <% for(let i=0; i <=count; i++ ){ %>
+                                                            <% survey.responses.reverse()%>
+                                                                <%var count=0; if(3<=survey.responses.length ){ count=2;
+                                                                    }else{ count=survey.responses.length-1; }%>
+                                                                    <% for(let i=0; i <=count; i++ ){ %>
                                                         <tr>
                                                             <td style="width:80px;text-align:center">
                                                                 <%= i+1%>

@@ -84,12 +84,5 @@
                             <%- include('./dashboard-includes/footer.ejs') %>
             </main>
     </div>
-    <script>
-        const leftDivs = document.querySelectorAll('.survey-card-image');
-        leftDivs.forEach(card => {
-            card.style.height = "300px";
-            card.style.height = `${card.parentElement.querySelector('.survey-card-content').offsetHeight + 20}px`;
-        })
-
-    </script>
+    <script src="/js/adjustHeight.js"></script>
     <%- include('../includes/end.ejs') %>

@@ -1,3 +1,5 @@
+const Survey = require('../Models/survey');
+
 exports.getHome = (req, res, next) => {
     console.log("Getting home page");
     res.render('Home/index', {
@@ -8,9 +10,14 @@ exports.getHome = (req, res, next) => {
 
 exports.getDashboard = (req, res, next) => {
     console.log("Getting Dashboard");
-    res.render('Dashboard/dashboard.ejs', {
-        pageTitle: "SurveyIt | Home",
-        path: "/dashboard"
-    })
+    Survey.find()
+        .then(survey => {
+            res.render('Dashboard/dashboard.ejs', {
+                pageTitle: "SurveyIt | Home",
+                path: "/dashboard",
+                surveys: survey.reverse()
+            })
+        })
+
 }
 

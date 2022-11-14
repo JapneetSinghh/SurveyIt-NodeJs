@@ -157,3 +157,33 @@ tr:last-child {
 /* tr:nth-child(even) {
     background-color: rgb(255, 255, 255);
 } */
+
+.incorrectAnswerMarked, .correctAnswerMarked {
+    background-color: rgb(255, 167, 167) !important;
+    border: none !important;
+    color: rgb(117, 21, 0) !important;
+    height: auto;
+    text-align: center;
+    margin-left: 40px;
+}
+
+.correctAnswerMarked {
+    background-color: rgb(167, 255, 167) !important;
+    color: rgb(0, 117, 0) !important;
+}
+
+.survey-form {
+    position: relative;
+}
+
+.answerStatus {
+    font-size: 60px;
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    color: rgb(113, 240, 113);
+}
+
+.hide {
+    display: none;
+}
