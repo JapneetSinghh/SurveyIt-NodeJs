@@ -89,7 +89,10 @@ exports.postNewSurvey = (req, res, next) => {
         .then(result => {
             console.log(result);
             console.log('SURVEY SUBMITTED')
-            res.redirect('/surveys');
+            res.render('responsepages.ejs', {
+                pageTitle: 'New Survey Created | SurveyIt',
+                pageType: 'newSurvey'
+            });
         }).catch(err => {
             console.log(err);
         })

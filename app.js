@@ -37,13 +37,15 @@ app.use(bodyParse.urlencoded({ extended: false }));
 const homeRoutes = require('./Routes/home');
 const surveyRoutes = require('./Routes/survey');
 const responseRoutes = require('./Routes/responses');
-
+const errorContrller = require('./Controllers/errorPage');
 
 
 // Setting up the routes
 app.use('/', homeRoutes.router);
 app.use(surveyRoutes.router);
 app.use(responseRoutes.router);
+app.use(errorContrller.get404);
+
 
 // CONNECTING TO DATABASE AND STARTING THE SERVER
 mongoose.connect(MONGODB_URI)

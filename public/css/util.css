@@ -253,3 +253,41 @@ table .viewBtn {
 .btnPublish:hover {
     opacity: 0.7;
 }
+
+.responseContainer {
+    height: 70vh;
+}
+
+.responseContainer h1 {
+    color: white;
+    padding: 20px;
+    text-align: center;
+    background-color: #333;
+}
+
+.responseImage {
+    width: 600px;
+    margin: auto;
+    margin-top: 40px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.responseImage img {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width:700px) {
+    .responseContainer h1 {
+        font-size: 20px;
+    }
+
+    .responseImage {
+        width: 100%;
+        height: 350px;
+        padding: 20px;
+    }
+
+
+}

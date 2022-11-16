@@ -112,6 +112,12 @@ exports.postNewResponse = (req, res, next) => {
     const surveyId = req.body.surveyId;
     Survey.findById(surveyId)
         .then(survey => {
+            if (survey.acceptingResponses !== 'Yes') {
+                return res.render('responsepages', {
+                    pageTitle: 'Form Closed | SurveyIt',
+                    pageType: 'notAccepting'
+                })
+            }
             const questionsData = [];
             const numOfQues = req.body.questionNumber.length;
             const username = req.body.userName;
@@ -206,7 +212,10 @@ exports.postNewResponse = (req, res, next) => {
                 survey.responses.push(response);
                 console.log(survey.responses);
                 survey.save();
-                res.redirect('/');
+                res.render('responsepages', {
+                    pageTitle: 'Survey Submitted | SurveyIt',
+                    pageType: 'surveySubmitted'
+                });
             })
                 .catch(err => {
                     console.log(err);
@@ -219,6 +228,13 @@ exports.getSurvey = (req, res, next) => {
     const surveyName = req.params.surveyName;
     Survey.findOne({ _id: surveyId, name: surveyName })
         .then(survey => {
+            if (survey.acceptingResponses !== 'Yes') {
+                console.log('form closed')
+                return res.render('responsepages', {
+                    pageTitle: 'Form Closed | SurveyIt',
+                    pageType: 'notAccepting'
+                })
+            }
             // console.log(survey);
             res.render('shareSurvey/survey', {
                 pageTitle: `SurveyIt | ${survey.name}`,

@@ -92,7 +92,9 @@
 
                                                                         <% } }) %>
                             </div>
-                            <button style="display: hidden;" id="#submitForm" type="submit"></button>
+                            <div style="display: none;">
+                                <button style="display: hidden;" id="#submitForm" type="submit"></button>
+                            </div>
                             <input type="hidden" name="surveyId" value="<%=survey._id%>">
                         </form>
                         <%- include('./dashboard-includes/footer.ejs')%>
