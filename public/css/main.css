@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100;200;300;400;500&family=Poppins:wght@600&display=swap');
 
 :root {
     --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -91,10 +92,14 @@ small {
 #navbar ul {
     display: flex;
     list-style: none;
+    margin-top: 4px;
 }
 
 #navbar ul li a {
-    color: #333;
+    color: rgb(54, 54, 54);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    transition: var(--transition);
 }
 
 #navbar ul li a:hover {
@@ -103,12 +108,15 @@ small {
 
 #navbar ul li {
     font-size: 18px;
-    margin: 0 10px;
+    margin: 0 8px;
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
+    color: rgb(54, 54, 54) !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 
 .dropdown-content {
@@ -628,4 +636,28 @@ footer p:last-child {
     .pageHeading {
         font-size: 15px;
     }
+}
+
+.loginBtn, .signupBtn {
+    background-color: black;
+    padding: 10px 20px !important;
+    border-radius: 4px;
+    font-size: 15px !important;
+    color: rgb(245, 245, 245) !important;
+    border: 1px solid black;
+}
+
+.loginBtn:hover {
+    background-color: transparent;
+    color: #333 !important;
+}
+
+.signupBtn {
+    color: #333 !important;
+    background-color: transparent !important;
+}
+
+.signupBtn:hover {
+    color: rgb(245, 245, 245) !important;
+    background-color: black !important;
 }

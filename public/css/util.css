@@ -41,6 +41,12 @@
     cursor: pointer;
 }
 
+.loginBtn, .signupBtn {
+    background-color: black;
+    padding: 7px;
+    font-size: 16px;
+}
+
 .survey-card-buttons {
     display: flex;
     gap: 5px;
@@ -288,6 +294,20 @@ table .viewBtn {
         height: 350px;
         padding: 20px;
     }
+}
 
+.tinytext {
+    font-size: 18px !important;
+}
 
+.errorFlash p {
+    all: unset !important;
+}
+
+.errorFlash {
+    background-color: rgb(255, 89, 89);
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 10px 0;
 }

@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+
+    <main>
+        <section class="loginPage">
+            <div class="loginImage">
+                <p>Sign Up</p>
+                <p>and come on in</p>
+                <br>
+                <img src="/img/signUpPage.png" alt="">
+                <p class="tinytext">@SurveyIt</p>
+            </div>
+            <div class="loginForm">
+                <div class="topBarLogin">
+                    <a href="/">Home</a>
+                    <p>Already have an account?
+                        <a class="btn1" href="/login">Log In</a>
+                    </p>
+                </div>
+                <section class="centerContainer">
+                    <section class="loginFormContainer">
+                        <h2>SurveyIt</h2>
+                        <p>Get better data with conversational forms, surveys, quizzes & more.</p>
+                        <!-- <div class="errorFlash">
+                            <p>Password must contain at least 6 characters</p>
+                        </div> -->
+                        <form style="padding-bottom: 50px;" action="">
+                            <label for="FirstName">First Name</label>
+                            <input type="text" placeholder="John">
+                            <label for="LastName">Last Name</label>
+                            <input type="text" placeholder="Smith">
+                            <label for="Email">Email</label>
+                            <input type="text" placeholder="japneet@gmail.com">
+                            <label for="Password">Password</label>
+                            <input type="password" placeholder="At least 6 characters">
+                            <label for="ConfirmPassword">Confirm Password</label>
+                            <input type="password" placeholder="At least 6 characters">
+                            <button type="submit">Create Account</button>
+                        </form>
+                    </section>
+                </section>
+            </div>
+        </section>
+    </main>
+    <%- include('../includes/end.ejs') %>

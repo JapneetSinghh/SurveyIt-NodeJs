@@ -37,6 +37,7 @@ app.use(bodyParse.urlencoded({ extended: false }));
 const homeRoutes = require('./Routes/home');
 const surveyRoutes = require('./Routes/survey');
 const responseRoutes = require('./Routes/responses');
+const authRoutes = require('./Routes/auth');
 const errorContrller = require('./Controllers/errorPage');
 
 
@@ -44,6 +45,7 @@ const errorContrller = require('./Controllers/errorPage');
 app.use('/', homeRoutes.router);
 app.use(surveyRoutes.router);
 app.use(responseRoutes.router);
+app.use(authRoutes.router);
 app.use(errorContrller.get404);
 
 

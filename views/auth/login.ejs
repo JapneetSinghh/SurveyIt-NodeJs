@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+
+    <main>
+        <section class="loginPage">
+            <div class="loginImage">
+                <p>Log In and</p>
+                <p>create your new survey</p>
+                <img src="/img/surveyIt.png" alt="">
+                <p class="tinytext">@SurveyIt</p>
+            </div>
+            <div class="loginForm">
+                <div class="topBarLogin">
+                    <a href="/">Home</a>
+                    <p>Don't have an account yet? <a class="btn1" href="/signup">Sign Up</a> </p>
+                </div>
+                <section class="centerContainer">
+                    <section class="loginFormContainer">
+                        <h2>SurveyIt</h2>
+                        <p>Hello, who’s this?</p>
+                        <form action="">
+                            <label for="Email">Email</label>
+                            <input type="text" placeholder="japneet@gmail.com">
+                            <label for="Email">Password</label>
+                            <input type="password" placeholder="At least 6 characters">
+                            <p><a href="/forgotPassword">Forgot your password ?</a></p>
+                            <button type="submit">LogIn to SurveyIt</button>
+                        </form>
+                    </section>
+
+                </section>
+
+
+            </div>
+        </section>
+    </main>
+    <%- include('../includes/end.ejs') %>
