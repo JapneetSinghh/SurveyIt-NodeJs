@@ -25,7 +25,9 @@ exports.postNewSurvey = (req, res, next) => {
     const questionsData = []; // 8
     const userId = req.user._id; // 9
     const responses = [];
-    console.log(req.body);
+    const author = `${req.session.user.firstName} ${req.session.user.lastName}`;
+    console.log('Author:' + author);
+    // console.log(req.body);
     // GETTING  DETAILS OF EVERY QUESTION
     for (var i = 1; i < numOfQues; i++) {
         var questionNumber = i;
@@ -82,7 +84,8 @@ exports.postNewSurvey = (req, res, next) => {
         lastUpdated: lastUpdated,
         numOfQues: numOfQues - 1,
         questionsData: questionsData,
-        responses: []
+        responses: [],
+        author: author
     });
     console.log("Desc" + surveyDescription);
     survey.save()
@@ -101,9 +104,11 @@ exports.postNewSurvey = (req, res, next) => {
 exports.getAllSurveys = (req, res, next) => {
     console.log("Getting Dashboard");
     const userId = req.user._id;
+    console.log(userId);
     Survey.find({ userId: userId })
         .then(survey => {
-            // console.log(survey);
+            console.log(survey);
+            console.log('survey page');
             res.render('Dashboard/surveys', {
                 pageTitle: "SurveyIt | All",
                 path: "/surveys",
@@ -118,6 +123,10 @@ exports.getEditSurvey = (req, res, next) => {
     const surveyId = req.params.surveyId;
     Survey.findById(surveyId)
         .then(survey => {
+            if (survey.userId.toString() !== req.user._id.toString()) {
+                console.log('Unauthorised');
+                return res.redirect('/404');
+            }
             console.log(survey);
             res.render('Dashboard/editSurvey', {
                 pageTitle: "SurveyIt |  Edit Survey",
@@ -230,6 +239,10 @@ exports.getViewSurvey = (req, res, next) => {
     Survey.findById(surveyId)
         .then(survey => {
             // console.log(survey);
+            if (survey.userId.toString() !== req.user._id.toString()) {
+                console.log('Unauthorised');
+                return res.redirect('/404');
+            }
             res.render('Dashboard/viewSurvey', {
                 pageTitle: "SurveyIt | View Survey",
                 path: "",

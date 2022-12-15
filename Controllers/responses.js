@@ -122,6 +122,20 @@ exports.postNewResponse = (req, res, next) => {
             const numOfQues = req.body.questionNumber.length;
             const username = req.body.userName;
             const email = req.body.userEmail;
+            // Dare and time 
+            const date2 = new Date();
+            var dateNow = `${date2.getDate()} ${date2.toLocaleString('default', { month: 'short' })} ${date2.getFullYear()}`;
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+
+            var time = strTime;
+
             // FETCHING QUESTIONS , ANSWERS, QUESTION TYPE ETC 
             for (var i = 1; i < numOfQues; i++) {
                 var questionNumber = i;
@@ -133,7 +147,6 @@ exports.postNewResponse = (req, res, next) => {
                 if (!questionDescription) {
                     questionDescription = '';
                 }
-
                 if (questionType === 'MCQ') {
                     var correctOption = '';
                     var numOfOptions = req.body[`question_${i}_number_of_options`];
@@ -205,7 +218,9 @@ exports.postNewResponse = (req, res, next) => {
                     username: username,
                     email: email,
                     questionsData: questionsData,
-                    surveyId: surveyId
+                    surveyId: surveyId,
+                    date: dateNow,
+                    time: time
                 };
                 return response;
             }).then(response => {
@@ -255,7 +270,7 @@ exports.getSurvey = (req, res, next) => {
 
 exports.getResponses = (req, res, next) => {
     const surveyData = []
-    Survey.find()
+    Survey.find({ userId: req.user._id })
         .then(surveys => {
             res.render('Dashboard/responses', {
                 pageTitle: 'Survey It | Responses',
@@ -287,6 +302,9 @@ exports.getUserResponse = (req, res, next) => {
     var surveyData = '';
     Survey.findById(surveyId)
         .then(survey => {
+            if (req.user._id.toString() !== survey.userId.toString()) {
+                return res.redirect('/404');
+            }
             surveyData = survey
             const responses = survey.responses;
             survey.responses.forEach((response) => {
@@ -311,6 +329,9 @@ exports.getUserResponse = (req, res, next) => {
             } else {
                 console.log('not found');
             }
+        })
+        .catch(err => {
+            res.redirect('/login');
         })
 
 }

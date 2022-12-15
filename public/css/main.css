@@ -259,7 +259,7 @@ small {
     font-weight: 500;
 }
 
-#sidebar .sidebar a {
+#sidebar .sidebar a, #sidebar .sidebar form {
     display: flex;
     color: var(--color-info-dark);
     height: 3.7rem;
@@ -268,31 +268,63 @@ small {
     position: relative;
     transition: var(--transition);
     padding-left: 1rem;
-
 }
 
-#sidebar .sidebar a h3 {
+#sidebar .sidebar a h3, #sidebar .sidebar form h3 {
     margin-top: 8px;
 }
 
-#sidebar .sidebar a span {
+#sidebar .sidebar a span, #sidebar .sidebar form span {
     font-size: 1.6rem
 }
 
-#sidebar .sidebar a:last-child {
+#sidebar .sidebar form {
     position: absolute;
     bottom: 2rem;
     width: 100%;
 }
 
-#sidebar .sidebar a span {
+#sidebar .sidebar a span, #sidebar .sidebar form span {
     margin-left: 10px;
 }
 
-#sidebar .sidebar a:hover, #sidebar .sidebar .active {
+#sidebar .sidebar a:hover, #sidebar .sidebar .active, #sidebar .sidebar form:hover {
     border-left: 10px solid var(--primary-color);
     background-color: rgb(229, 229, 229);
     color: var(--primary-color);
+}
+
+#sidebar .sidebar form {
+    cursor: pointer;
+    color: var(--color-info-dark) !important;
+}
+
+#sidebar .sidebar form button {
+    border: transparent;
+    background: none;
+    display: flex;
+    gap: 16px;
+    font-size: 18px;
+    width: 100%;
+}
+
+#sidebar .sidebar form button h3 {
+    font-weight: bold;
+    font-size: 15px;
+    top: -1px;
+    position: relative;
+}
+
+#sidebar .sidebar form button h3, #sidebar .sidebar form button i {
+    color: var(--color-info-dark);
+}
+
+#sidebar .sidebar form button:hover {
+    cursor: pointer;
+}
+
+#sidebar .sidebar form:hover button h3, #sidebar .sidebar form:hover button i {
+    color: var(--primary-color) !important;
 }
 
 /* Main */

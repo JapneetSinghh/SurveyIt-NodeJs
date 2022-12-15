@@ -65,6 +65,8 @@
                                                             <th>Sno</th>
                                                             <th>Name</th>
                                                             <th>Email</th>
+                                                            <th>Date</th>
+                                                            <th>Time</th>
                                                             <th>Actions</th>
                                                             <% survey.responses.reverse()%>
                                                                 <%var count=0; if(3<=survey.responses.length ){ count=2;
@@ -79,6 +81,13 @@
                                                             </td>
                                                             <td>
                                                                 <%= survey.responses[i].email%>
+                                                            </td>
+                                                            <td>
+                                                                <%= survey.responses[i].date%>
+
+                                                            </td>
+                                                            <td>
+                                                                <%= survey.responses[i].time%>
                                                             </td>
                                                             <td
                                                                 style="display: flex;gap:6px; padding:8px;justify-content: center;">

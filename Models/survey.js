@@ -44,6 +44,10 @@ const surveySchema = new Schema({
     },
     responses: {
         type: Array
+    },
+    author: {
+        type: String,
+        required: true
     }
 })
 

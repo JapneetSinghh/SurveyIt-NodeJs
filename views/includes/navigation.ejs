@@ -2,27 +2,33 @@
     <nav id="navbar">
         <h2>SurveyIt</h2>
         <ul>
-            <li><a href="/dashboard">My Surveys</a></li>
-            <li>
-                <div class="dropdown">
-                    <span class="profile-navbar">Japneet</span>
-                    <div class="dropdown-content">
-                        <div class="dropdown-container">
-                            <ul class="dropdown-list">
-                                <li><a href="/profile">My Profile</a></li>
-                                <li><a href="/surveys">Surveys</a></li>
-                                <li><a href="/responses">Responses</a></li>
-                                <li><a href="/newSurvey">New Survey</a></li>
-                                <li>
-                                    <form action=""><button class="logout-button" type="submit">LogOut</button></form>
-                                </li>
-                            </ul>
+            <%if(isAuthenticated){%>
+                <li><a href="/dashboard">My Surveys</a></li>
+                <li>
+                    <div class="dropdown">
+                        <span class="profile-navbar">
+                            <%= firstName%>
+                        </span>
+                        <div class="dropdown-content">
+                            <div class="dropdown-container">
+                                <ul class="dropdown-list">
+                                    <li><a href="/profile">My Profile</a></li>
+                                    <li><a href="/surveys">Surveys</a></li>
+                                    <li><a href="/responses">Responses</a></li>
+                                    <li><a href="/newSurvey">New Survey</a></li>
+                                    <li>
+                                        <form action="/logout" method="POST"><button class="logout-button"
+                                                type="submit">Logout</button></form>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li><a class="loginBtn" href="/login">Log In</a></li>
-            <li><a class="signupBtn" href="/signup">Sign Up</a></li>
+                </li>
+                <%}else{%>
+                    <li><a class="loginBtn" href="/login">Log In</a></li>
+                    <li><a class="signupBtn" href="/signup">Sign Up</a></li>
+                    <%}%>
         </ul>
     </nav>
 </header>

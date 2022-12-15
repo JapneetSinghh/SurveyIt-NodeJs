@@ -1,11 +1,33 @@
 // IMPORTING EXPRESS
 const express = require('express');
 const app = express();
+const MONGODB_URI = `mongodb+srv://japneetSinghh:sidak123@cluster0.efo4pz7.mongodb.net/SurveyIt?retryWrites=true&w=majority`;
+
+// ADDING SESSION
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: 'sessions'
+})
+
+// npm install cookie - parser
+var cookieParser = require('cookie-parser')
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: 'my secret',
+    resave: 'false',
+    saveUninitialized: false,
+    store: store
+  })
+);
+
 
 // Importing Mongoose
 const mongoose = require('mongoose');
 // MONGODB CONNECTION LINK
-const MONGODB_URI = `mongodb+srv://japneetSinghh:sidak123@cluster0.efo4pz7.mongodb.net/SurveyIt?retryWrites=true&w=majority`;
 
 // Serving the Public Folder As Static For Assets And CSS
 const path = require('path');
@@ -15,9 +37,15 @@ const User = require('./Models/users');
 
 // Adding the user data to req
 app.use((req, res, next) => {
-  User.findById(`636ce94855c160317edfa7c9`)
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
     .then(user => {
       req.user = user;
+      console.log('User Activated in req');
+      res.locals.firstName = req.user.firstName;
+      res.locals.lastName = req.user.lastName;
       next();
     })
     .catch(err => {
@@ -33,6 +61,12 @@ app.set('views', 'views');
 const bodyParse = require('body-parser');
 app.use(bodyParse.urlencoded({ extended: false }));
 
+// SETTING THE AUTHENTICATION STATUS FOR ALL PAGES
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  next();
+})
+
 // Importing routes
 const homeRoutes = require('./Routes/home');
 const surveyRoutes = require('./Routes/survey');
@@ -40,13 +74,17 @@ const responseRoutes = require('./Routes/responses');
 const authRoutes = require('./Routes/auth');
 const errorContrller = require('./Controllers/errorPage');
 
-
 // Setting up the routes
 app.use('/', homeRoutes.router);
 app.use(surveyRoutes.router);
 app.use(responseRoutes.router);
 app.use(authRoutes.router);
 app.use(errorContrller.get404);
+
+
+
+// Importing bcryptjs to encrypt the password
+const bcryptjs = require('bcryptjs');
 
 
 // CONNECTING TO DATABASE AND STARTING THE SERVER
@@ -58,13 +96,20 @@ mongoose.connect(MONGODB_URI)
       .then(user => {
         if (!user) {
           console.log('No User Exists Till Now, Thereofore creating our first user');
-          const user = new User({
-            username: 'admin',
-            password: '12345'
-          })
-          user.save(); // ADDS THE NEW USER TO DB
+          let password = '123456'
+          bcryptjs.hash(password, 12)
+            .then(hashedPassword => {
+              const user = new User({
+                email: 'japneet8208@gmail.com',
+                firstName: 'Japneet',
+                lastName: 'Singh',
+                password: hashedPassword
+                // Adding encrypted password
+              })
+              user.save(); // ADDS THE NEW USER TO DB
+            })
         } else {
-          console.log('User Found');
+          // console.log('User Found');
         }
       }).then(result => {
         const port = process.env.PORT || 2100;
@@ -75,7 +120,6 @@ mongoose.connect(MONGODB_URI)
       .catch(err => {
         console.log('Error' + err);
       })
-
   })
   .catch(err => {
     console.log('Failed To Connect To Database');

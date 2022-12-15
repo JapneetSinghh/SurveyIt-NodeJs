@@ -10,7 +10,8 @@ exports.getHome = (req, res, next) => {
 
 exports.getDashboard = (req, res, next) => {
     console.log("Getting Dashboard");
-    Survey.find()
+    console.log(req.user);
+    Survey.find({ userId: req.user._id })
         .then(survey => {
             res.render('Dashboard/dashboard.ejs', {
                 pageTitle: "SurveyIt | Home",
@@ -18,6 +19,5 @@ exports.getDashboard = (req, res, next) => {
                 surveys: survey.reverse()
             })
         })
-
 }
 

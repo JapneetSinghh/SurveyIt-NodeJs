@@ -11,7 +11,10 @@
             <div class="text-muted">
                 <a href="/">
                     <div style="right:10px ;" class="dropdown">
-                        <span class="profile-navbar">Japneet Singh</span>
+                        <span class="profile-navbar">
+                            <%= firstName%>
+                                <%= lastName%>
+                        </span>
                         <div class="dropdown-content">
                             <div class="dropdown-container">
                                 <ul class="dropdown-list">
@@ -20,7 +23,8 @@
                                     <li><a href="/responses">Responses</a></li>
                                     <li><a href="/newSurvey">New Survey</a></li>
                                     <li>
-                                        <form action=""><button class="logout-button" type="submit">LogOut</button>
+                                        <form action="/logout" method="POST"><button class="logout-button"
+                                                type="submit">Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -29,7 +33,6 @@
                     </div>
                 </a>
             </div>
-
         </div>
     </div>
 </div>
