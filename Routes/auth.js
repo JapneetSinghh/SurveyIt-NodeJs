@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 // IMPORTING EXPRESS VALIDATOR
 const { check, body } = require('express-validator/check');
 
