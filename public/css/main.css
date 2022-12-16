@@ -332,7 +332,7 @@ small {
     margin-left: 270px;
     transition: 0.3s all linear;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #sidebar:hover .main {
@@ -424,7 +424,7 @@ small {
 }
 
 .survey-card-dashboard {
-    width: 95%;
+    width: 96%;
     background: white;
     min-height: 170px;
     border-radius: 10px;

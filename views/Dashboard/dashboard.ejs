@@ -1,7 +1,7 @@
 <%- include('../includes/head.ejs') %>
     <div class="container">
         <%- include('./dashboard-includes/sidebar.ejs') %>
-            <main class="main">
+            <main class="main setFooter">
                 <%- include('./dashboard-includes/topbar.ejs') %>
                     <!-- WORKSPACE NAME HEADER -->
                     <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items: center;border-bottom: 1px solid rgba(51, 51, 51, 0.539); margin: auto;"
@@ -12,68 +12,80 @@
                         <a class="btn2 newSurveyBtn" href="/newSurvey"> Start New Survey <i
                                 class="bi bi-plus-square-fill"></i></a>
                     </div>
-                    <!-- RECENT SURVEYS -->
-                    <div style="padding:10px 20px; color:gray; padding-bottom: 0;display:flex; justify-content:space-between; align-items: center;width:
+                    <%if(surveys.length){%>
+                        <!-- RECENT SURVEYS -->
+                        <div style="padding:10px 20px; color:gray; padding-bottom: 0;display:flex; justify-content:space-between; align-items: center;width:
                     97%;margin: auto;">
-                        <h2>Your Recent Surveys</h2>
-                        <p class="text-muted"><a class="text-muted" href="/">View All...</a></p>
-                    </div>
-                    <!-- Survey grids -->
-                    <div id="surveyList">
+                            <h2>Your Recent Surveys</h2>
+                            <p class="text-muted"><a class="text-muted" href="/">View All...</a></p>
+                        </div>
+                        <!-- Survey grids -->
+                        <div id="surveyList">
 
-                        <%for(let i=0;i<=surveys.length-1;i++){%>
-                            <%if(i===4){ break; }%>
-                                <!-- Survey Card Begins -->
-                                <div class="survey-card-dashboard">
-                                    <div class="survey-image">
-                                        <img style="height:200px" src="<%=surveys[i].thumbnailImage%>" alt="">
-                                    </div>
-                                    <!-- Survey Data -->
-                                    <div class="survey-data">
-                                        <h2>
-                                            <%= surveys[i].name%>
-                                        </h2>
-                                        <div class="text-muted">
-                                            <p>Responses: <%=surveys[i].responses.length%>
-                                            </p>
-                                            <p>Last Updated: <%=surveys[i].lastUpdated%>
-                                            </p>
-                                            <p>Created On: <%=surveys[i].dateCreated%>
-                                            </p>
+                            <%for(let i=0;i<=surveys.length-1;i++){%>
+                                <%if(i===4){ break; }%>
+                                    <!-- Survey Card Begins -->
+                                    <div class="survey-card-dashboard">
+                                        <div class="survey-image">
+                                            <img style="height:200px" src="<%=surveys[i].thumbnailImage%>" alt="">
                                         </div>
-                                        <!-- Dot menu -->
-                                        <div class="dot-menu">
-                                            <div style="padding: 10px; cursor: pointer; font-size: 18px;"
-                                                class="dropdown">
-                                                <span class="profile-navbar"><i
-                                                        class="bi bi-three-dots-vertical"></i></span>
-                                                <div class="dropdown-content">
-                                                    <div class="dropdown-container">
-                                                        <ul class="dropdown-list">
-                                                            <li><a href="/shareSurvey/<%=surveys[i]._id%>">Share</a>
-                                                            </li>
-                                                            <li><a href="/getResponse/<%=surveys[i]._id%>">Responses</a>
-                                                            </li>
-                                                            <li><a href="/viewSurvey/<%=surveys[i]._id%>">View</a></li>
-                                                            <li><a href="/editSurvey/<%=surveys[i]._id%>">Edit</a></li>
-                                                            <li>
-                                                                <form action="/deleteSurvey/<%= surveys[i]._id%>"
-                                                                    method="post">
-                                                                    <button style="width: 100%;height:100%"
-                                                                        type="submit"
-                                                                        class="delete-button">Delete</button>
-                                                                </form>
-                                                            </li>
-                                                        </ul>
+                                        <!-- Survey Data -->
+                                        <div class="survey-data">
+                                            <h2>
+                                                <%= surveys[i].name%>
+                                            </h2>
+                                            <div class="text-muted">
+                                                <p>Responses: <%=surveys[i].responses.length%>
+                                                </p>
+                                                <p>Last Updated: <%=surveys[i].lastUpdated%>
+                                                </p>
+                                                <p>Created On: <%=surveys[i].dateCreated%>
+                                                </p>
+                                            </div>
+                                            <!-- Dot menu -->
+                                            <div class="dot-menu">
+                                                <div style="padding: 10px; cursor: pointer; font-size: 18px;"
+                                                    class="dropdown">
+                                                    <span class="profile-navbar"><i
+                                                            class="bi bi-three-dots-vertical"></i></span>
+                                                    <div class="dropdown-content">
+                                                        <div class="dropdown-container">
+                                                            <ul class="dropdown-list">
+                                                                <li><a href="/shareSurvey/<%=surveys[i]._id%>">Share</a>
+                                                                </li>
+                                                                <li><a
+                                                                        href="/getResponse/<%=surveys[i]._id%>">Responses</a>
+                                                                </li>
+                                                                <li><a href="/viewSurvey/<%=surveys[i]._id%>">View</a>
+                                                                </li>
+                                                                <li><a href="/editSurvey/<%=surveys[i]._id%>">Edit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <form action="/deleteSurvey/<%= surveys[i]._id%>"
+                                                                        method="post">
+                                                                        <button style="width: 100%;height:100%"
+                                                                            type="submit"
+                                                                            class="delete-button">Delete</button>
+                                                                    </form>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <%}%>
-                    </div>
-                    <%- include('./dashboard-includes/footer.ejs') %>
+                                    <%}%>
+                        </div>
+                        <%}else{%>
+                            <div style="padding:10px 20px; color:gray; padding-bottom: 0;display:flex; justify-content:space-between; align-items: center;width:
+                    97%;margin: auto;">
+                                <p style="color: #333;font-size:25px">Welcome to SurveyIt, Start creating your custom
+                                    surveys !!</p>
+                            </div>
+                            <% }%>
+
             </main>
     </div>
-    <%- include('../includes/end.ejs') %>
+    <%- include('./dashboard-includes/footer.ejs') %>
+        <%- include('../includes/end.ejs') %>

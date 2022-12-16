@@ -20,22 +20,29 @@
                     <section class="loginFormContainer">
                         <h2>SurveyIt</h2>
                         <p>Get better data with conversational forms, surveys, quizzes & more.</p>
-                        <!-- <div class="errorFlash">
-                            <p>Password must contain at least 6 characters</p>
-                        </div> -->
-                        <form style="padding-bottom: 50px;" action="/signup" method="Post">
-                            <label for="FirstName">First Name</label>
-                            <input name="firstName" type="text" placeholder="John">
-                            <label for="LastName">Last Name</label>
-                            <input name="lastName" type="text" placeholder="Smith">
-                            <label for="Email">Email</label>
-                            <input name="email" type="text" placeholder="japneet@gmail.com">
-                            <label for="Password">Password</label>
-                            <input name="password" type="password" placeholder="At least 6 characters">
-                            <label for="ConfirmPassword">Confirm Password</label>
-                            <input type="password" placeholder="At least 6 characters">
-                            <button type="submit">Create Account</button>
-                        </form>
+                        <%if(message){%>
+                            <div class="errorFlash">
+                                <p>
+                                    <%= message%>
+                                </p>
+                            </div>
+                            <%}%>
+
+                                <form style="padding-bottom: 50px;" action="/signup" method="Post">
+                                    <label for="FirstName">First Name</label>
+                                    <input value="<%=firstName%>" name="firstName" type="text" placeholder="John">
+                                    <label for="LastName">Last Name</label>
+                                    <input value="<%=lastName%>" name="lastName" type="text" placeholder="Smith">
+                                    <label for="Email">Email</label>
+                                    <input value="<%=email%>" name="email" type="text" placeholder="japneet@gmail.com">
+                                    <label for="Password">Password</label>
+                                    <input value="<%=password%>" name="password" type="password"
+                                        placeholder="At least 6 characters">
+                                    <label for="ConfirmPassword">Confirm Password</label>
+                                    <input value="<%=confirmPassword%>" type="password" name="confirmPassword"
+                                        placeholder="At least 6 characters">
+                                    <button type="submit">Create Account</button>
+                                </form>
                     </section>
                 </section>
             </div>

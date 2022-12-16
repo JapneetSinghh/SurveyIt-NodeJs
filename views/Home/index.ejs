@@ -1,20 +1,71 @@
 <%- include('../includes/head.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
+        <main>
+            <div style="  background: rgb(238, 224, 212);
+    height: 70vh;">
 
-<%- include('../includes/navigation.ejs') %>
-<main>
-    <div  style="  background: rgb(238, 224, 212);
-    height: 80vh;">
+            </div>
+            <div style="  background: rgb(172, 99, 35);height: 80vh;">
 
-    </div>
-    <div  style="  background: rgb(172, 99, 35);
-    height: 80vh;">
+            </div>
+            <section id="globalSurveys">
+                <h1>Surveys shared globally on SurveyIt</h1>
+                <% surveys.reverse().forEach(survey=>{ %>
+                    <article>
+                        </p>
+                        <div class="globalSurveyImage">
+                            <img src="<%= survey.thumbnailImage%>" alt="">
+                        </div>
+                        <div class="globalSurveyData">
+                            <p style="margin: 0;">Survey Owner : <%= survey.author%>
+                                    <h2>
+                                        <%= survey.surveyName %>
+                                    </h2>
+                                    <p>
+                                        <%= survey.description%>
+                                    </p>
+                                    <div class="grids-data">
+                                        <div>
+                                            <p class="survey-card-type">Status: </p>
+                                            <p class="survey-card-general">
+                                                <% if(survey.acceptingResponses==='Yes' ){%> Active <div
+                                                        class="status-active">
+                                                    </div>
+                                                    <%}else{%> Closed <div class="status-inactive"></div>
+                                                        <%}%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">Responses: </p>
+                                            <p class="survey-card-general">
+                                                <%= survey.numOfResponses%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">Date Created: </p>
+                                            <p class="survey-card-general">
+                                                <%= survey.dateCreated%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">Last Updated: </p>
+                                            <p class="survey-card-general">
+                                                <%= survey.lastUpdated%>
+                                            </p>
+                                        </div>
 
-    </div>
-    <div  style="  background: rgb(9, 5, 2);
-    height: 80vh;">
+                                    </div>
+                                    <div style="width: 115px;">
+                                        <a style="text-align: center;" class="btn2"
+                                            href="/getSurvey/<%= survey.surveyName%>/<%= survey.surveyId%>"> Start
+                                            Survey</a>
+                                    </div>
+                        </div>
+                    </article>
+                    <% })%>
 
-    </div>
- 
-  
-</main>
-<%- include('../includes/end.ejs') %>
+            </section>
+
+
+        </main>
+        <%- include('../includes/end.ejs') %>

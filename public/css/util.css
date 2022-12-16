@@ -294,14 +294,34 @@ table .viewBtn {
     font-size: 18px !important;
 }
 
-.errorFlash p {
+.errorFlash p, .successFlash p {
     all: unset !important;
 }
 
-.errorFlash {
+.errorFlash, .successFlash {
     background-color: rgb(255, 89, 89);
     text-align: center;
     color: rgb(255, 255, 255);
     padding: 10px;
     margin: 10px 0;
+}
+
+.successFlash {
+    background-color: teal;
+}
+
+.setFooter {
+    min-height: calc(100vh - 100px);
+}
+
+#footer {
+    margin-left: 270px;
+    width: calc(100vw - 270px);
+}
+
+@media screen and (max-width:800px) {
+    #footer {
+        margin-left: 0px;
+        width: 100vw;
+    }
 }

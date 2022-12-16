@@ -1,82 +1,83 @@
 <%- include('../includes/head.ejs') %>
-
-    <%- include('../includes/navigation.ejs') %>
-        <%- include('../Dashboard/dashboard-includes/addFormModal.ejs') %>
-            <form style="max-width:1200px;margin:auto" id="viewMode" action="/postResponse" method="post">
-                <!-- SURVEY HEADER -->
-                <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items:center;border-bottom: 1px solid rgba(51, 51, 51,0.539); margin: auto;"
-                    class="dashboard-header">
-                    <h2><a style="color: blue;" href="/">SurveyIt</a> / <%if(!viewMode){%>
-                            <%=editMode?"Edit":"New"%> Survey
-                                <%}else{%>
-                                    <%= survey.name%>
-                                        <%}%>
-                    </h2>
-                    <button class="btnPublish" id="submitBtnCheck" type="button">Submit</button>
-                </div>
-                <div class="survey-container">
-                    <!-- Form intro -->
-                    <div class="survey-form">
-                        <input type="hidden" value="0" name="questionNumber" class="questionNumber">
-                        <div class="flex-question-sidebar">
-                            <div style="width: 100%;" class="form-question-card intro-card">
-                                <div class="intro-card-thumbnail">
-                                    <img id="thumbnailImage" src="<%= survey.thumbnailImage%>" alt="">
-                                </div>
-                                <div class="intro-card-content">
-                                    <label style="display: none;" for=""><span id="questionNum"><i
-                                                class="bi bi-arrow-right"></i>
-                                            <span class="questionNum">0</span></span></label>
-                                    <p style="color: gray;"> Survey Owner: <%= survey.author%>
-                                    </p>
-                                    <h1>
+    <main class="setFooter">
+        <%- include('../includes/navigation.ejs') %>
+            <%- include('../Dashboard/dashboard-includes/addFormModal.ejs') %>
+                <form style="max-width:1200px;margin:auto" id="viewMode" action="/postResponse" method="post">
+                    <!-- SURVEY HEADER -->
+                    <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items:center;border-bottom: 1px solid rgba(51, 51, 51,0.539); margin: auto;"
+                        class="dashboard-header">
+                        <h2><a style="color: blue;" href="/">SurveyIt</a> / <%if(!viewMode){%>
+                                <%=editMode?"Edit":"New"%> Survey
+                                    <%}else{%>
                                         <%= survey.name%>
-                                    </h1>
-                                    <p>
-                                        <%= survey.description%>
-                                    </p>
+                                            <%}%>
+                        </h2>
+                        <button class="btnPublish" id="submitBtnCheck" type="button">Submit</button>
+                    </div>
+                    <div class="survey-container">
+                        <!-- Form intro -->
+                        <div class="survey-form">
+                            <input type="hidden" value="0" name="questionNumber" class="questionNumber">
+                            <div class="flex-question-sidebar">
+                                <div style="width: 100%;" class="form-question-card intro-card">
+                                    <div class="intro-card-thumbnail">
+                                        <img id="thumbnailImage" src="<%= survey.thumbnailImage%>" alt="">
+                                    </div>
+                                    <div class="intro-card-content">
+                                        <label style="display: none;" for=""><span id="questionNum"><i
+                                                    class="bi bi-arrow-right"></i>
+                                                <span class="questionNum">0</span></span></label>
+                                        <p style="color: gray;"> Survey Owner: <%= survey.author%>
+                                        </p>
+                                        <h1>
+                                            <%= survey.name%>
+                                        </h1>
+                                        <p>
+                                            <%= survey.description%>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <%- include('../Dashboard/view-survey-page-includes/survey-form-head')%>
+                            <div class="userInfo">
+                                <h2 class="viewQuestion">Enter Name</h2>
+                                <input class="validateRequired userDetails" type="text" placeholder="Japneet Singh"
+                                    name="userName">
+                                <h2 class="viewQuestion">Enter Email</h2>
+                                <input class="validateRequired userDetails" type="text" value=""
+                                    placeholder="xyz@gmail.com" name="userEmail">
+                            </div>
+
+                            <%- include('../Dashboard/view-survey-page-includes/survey-form-end')%>
+
+                                <% var questions=survey.questionsData; questions.forEach(question=>{
+                                    data=question;
+                                    if(question.type==='MCQ'){ %>
+                                    <!-- FORM  MCQ -->
+                                    <%- include('../Dashboard/view-survey-page-includes/survey-form-MCQ-question')%>
+                                        <% }else if(question.type===`contactNumber`){ %>
+                                            <!-- FORM Contact -->
+                                            <%-
+                                                include('../Dashboard/view-survey-page-includes/survey-form-contact-question')%>
+                                                <% }else if(question.type===`generalQuestion`){%>
+                                                    <!-- FORM GENERAL QUESN -->
+                                                    <%-
+                                                        include('../Dashboard/view-survey-page-includes/survey-form-general-question')%>
+                                                        <% }else if(question.type===`link`){%>
+                                                            <!-- Form Link -->
+                                                            <%-
+                                                                include('../Dashboard/view-survey-page-includes/survey-form-link-question')%>
+
+                                                                <% } }) %>
                     </div>
-                    <%- include('../Dashboard/view-survey-page-includes/survey-form-head')%>
-                        <div class="userInfo">
-                            <h2 class="viewQuestion">Enter Name</h2>
-                            <input class="validateRequired userDetails" type="text" placeholder="Japneet Singh"
-                                name="userName">
-                            <h2 class="viewQuestion">Enter Email</h2>
-                            <input class="validateRequired userDetails" type="text" value="" placeholder="xyz@gmail.com"
-                                name="userEmail">
-                        </div>
+                    <div style="display: none;">
+                        <button style="display: hidden;" id="#submitForm" type="submit"></button>
+                    </div>
+                    <input type="hidden" name="surveyId" value="<%=survey._id%>">
+                </form>
+    </main>
 
-                        <%- include('../Dashboard/view-survey-page-includes/survey-form-end')%>
 
-                            <% var questions=survey.questionsData; questions.forEach(question=>{
-                                data=question;
-                                if(question.type==='MCQ'){ %>
-                                <!-- FORM  MCQ -->
-                                <%- include('../Dashboard/view-survey-page-includes/survey-form-MCQ-question')%>
-                                    <% }else if(question.type===`contactNumber`){ %>
-                                        <!-- FORM Contact -->
-                                        <%-
-                                            include('../Dashboard/view-survey-page-includes/survey-form-contact-question')%>
-                                            <% }else if(question.type===`generalQuestion`){%>
-                                                <!-- FORM GENERAL QUESN -->
-                                                <%-
-                                                    include('../Dashboard/view-survey-page-includes/survey-form-general-question')%>
-                                                    <% }else if(question.type===`link`){%>
-                                                        <!-- Form Link -->
-                                                        <%-
-                                                            include('../Dashboard/view-survey-page-includes/survey-form-link-question')%>
-
-                                                            <% } }) %>
-                </div>
-                <div style="display: none;">
-                    <button style="display: hidden;" id="#submitForm" type="submit"></button>
-                </div>
-                <input type="hidden" name="surveyId" value="<%=survey._id%>">
-            </form>
-            <%- include('../Dashboard/dashboard-includes/footer.ejs') %>
-
-                <script src="/js/surveyForm.js"></script>
-                <%- include('../includes/end.ejs') %>
+    <script src="/js/surveyForm.js"></script>
+    <%- include('../includes/end.ejs') %>

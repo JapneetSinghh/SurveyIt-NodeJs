@@ -285,12 +285,12 @@ exports.getResponses = (req, res, next) => {
 exports.getFullResponse = (req, res, next) => {
     const surveyId = req.params.surveyId;
     Survey.findById(surveyId)
-        .then(survey => {
+        .then(surveys => {
             res.render('Dashboard/responses', {
                 pageTitle: 'Survey It | Responses',
                 path: "/responses",
                 pageType: 'oneSurvey',
-                survey: survey
+                surveys: surveys
             });
         })
 }

@@ -24,6 +24,9 @@ app.use(
   })
 );
 
+// npm install--save connect - flash
+var flash = require('connect-flash');
+
 
 // Importing Mongoose
 const mongoose = require('mongoose');
@@ -66,6 +69,9 @@ app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   next();
 })
+
+// USING FLASH FUNCTION TO SEND RESPONSES TO USER
+app.use(flash());
 
 // Importing routes
 const homeRoutes = require('./Routes/home');

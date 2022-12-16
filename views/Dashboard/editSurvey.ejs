@@ -1,7 +1,7 @@
 <%- include('../includes/head.ejs') %>
     <div class="container">
         <%- include('./dashboard-includes/sidebar.ejs') %>
-            <main class="main modalMain">
+            <main class="main modalMain setFooter">
                 <%- include('./dashboard-includes/addFormModal.ejs') %>
                     <%- include('./dashboard-includes/topbar.ejs') %>
                         <!-- WORKSPACE NAME HEADER -->
@@ -39,10 +39,10 @@
                                 </div>
                                 <input type="hidden" name="surveyId" value="<%=survey._id%>">
                         </form>
-                        <%- include('./dashboard-includes/footer.ejs')%>
             </main>
     </div>
-    <script src="/js/surveyForm.js"></script>
-    <script src="/js/updateImageSurvey.js"></script>
-    <script src="/js/mcqChoice.js"></script>
-    <%- include('../includes/end.ejs') %>
+    <%- include('./dashboard-includes/footer.ejs')%>
+        <script src="/js/surveyForm.js"></script>
+        <script src="/js/updateImageSurvey.js"></script>
+        <script src="/js/mcqChoice.js"></script>
+        <%- include('../includes/end.ejs') %>

@@ -1,7 +1,7 @@
 <%- include('../includes/head.ejs') %>
     <div class="container">
         <%- include('./dashboard-includes/sidebar.ejs') %>
-            <main class="main modalMain">
+            <main class="main modalMain setFooter">
                 <%- include('./dashboard-includes/addFormModal.ejs') %>
                     <%- include('./dashboard-includes/topbar.ejs') %>
                         <!-- WORKSPACE NAME HEADER -->
@@ -12,203 +12,209 @@
                                 </h2>
                                 <%}else{%>
                                     <h2>
-                                        <%= survey.name%>
+                                        <%= surveys.name%>
                                     </h2>
                                     <%}%>
 
                         </div>
-
-                        <section id="responses">
-                            <%if(pageType==='allSurveys'){%>
-                                <% surveys.slice().reverse().forEach(survey=>{%>
-                                    <article class="responses-container">
-                                        <div class="responses-header">
-                                            <h2 style="color: #333;">
-                                                <%= survey.name%>
-                                            </h2 style="color: #333;">
-                                            <%if(survey.acceptingResponses==='Yes'){%>
-                                                <p class="status-green"
-                                                    style="font-size: 17px; color: rgb(154, 153, 153);">
-                                                    Accepting Responses<span></span>
-                                                </p>
-                                                <%}else{%>
-                                                    <p class="status-red"
+                        <%if(surveys.length !==0){%>
+                            <section id="responses">
+                                <%if(pageType==='allSurveys'){%>
+                                    <% surveys.slice().reverse().forEach(survey=>{%>
+                                        <article class="responses-container">
+                                            <div class="responses-header">
+                                                <h2 style="color: #333;">
+                                                    <%= survey.name%>
+                                                </h2 style="color: #333;">
+                                                <%if(survey.acceptingResponses==='Yes'){%>
+                                                    <p class="status-green"
                                                         style="font-size: 17px; color: rgb(154, 153, 153);">
-                                                        Closed <span></span>
+                                                        Accepting Responses<span></span>
                                                     </p>
-                                                    <%}%>
-                                        </div>
-                                        <div class="survey-data">
-                                            <div class="survey-content">
-                                                <div class="grid">
-                                                    <p> <span class="surveyData">Date Created: </span>
-                                                        <%=survey.dateCreated%>
-                                                    </p>
-                                                    <p><span class="surveyData">Last Updated: </span>
-                                                        <%=survey.lastUpdated%>
-                                                    </p>
-                                                    <p><span class="surveyData">Questions: </span>
-                                                        <%=survey.numOfQues%>
-                                                    </p>
-                                                    <p><span class="surveyData">Responses: </span>
-                                                        <%=survey.responses.length%>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <%if(survey.responses.length!==0){%>
-                                            <div>
-                                                <p class="text-muted">Recent Responses</p>
-                                                <div class="responses-table">
-                                                    <table>
-                                                        <tr>
-                                                            <th>Sno</th>
-                                                            <th>Name</th>
-                                                            <th>Email</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
-                                                            <th>Actions</th>
-                                                            <% survey.responses.reverse()%>
-                                                                <%var count=0; if(3<=survey.responses.length ){ count=2;
-                                                                    }else{ count=survey.responses.length-1; }%>
-                                                                    <% for(let i=0; i <=count; i++ ){ %>
-                                                        <tr>
-                                                            <td style="width:80px;text-align:center">
-                                                                <%= i+1%>
-                                                            </td>
-                                                            <td style=" min-width: 180px;">
-                                                                <%= survey.responses[i].username%>
-                                                            </td>
-                                                            <td>
-                                                                <%= survey.responses[i].email%>
-                                                            </td>
-                                                            <td>
-                                                                <%= survey.responses[i].date%>
-
-                                                            </td>
-                                                            <td>
-                                                                <%= survey.responses[i].time%>
-                                                            </td>
-                                                            <td
-                                                                style="display: flex;gap:6px; padding:8px;justify-content: center;">
-                                                                <a class="icon-button viewBtn"
-                                                                    href="/viewUserResponse/<%= survey._id%>/<%=i%>/<%=survey.responses[i].username%>"><i
-                                                                        class="bi bi-eye"></i>
-                                                                    View</a>
-                                                                <form
-                                                                    action="/deleteSurveyResponse/<%=survey._id%>/<%=i%>/<%=survey.responses[i].username%>"
-                                                                    method="post">
-                                                                    <button type="submit"
-                                                                        class="deleteBtn icon-button"><i
-                                                                            class="bi bi-trash"></i>
-                                                                        Delete</button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
+                                                    <%}else{%>
+                                                        <p class="status-red"
+                                                            style="font-size: 17px; color: rgb(154, 153, 153);">
+                                                            Closed <span></span>
+                                                        </p>
                                                         <%}%>
-                                                    </table>
+                                            </div>
+                                            <div class="survey-data">
+                                                <div class="survey-content">
+                                                    <div class="grid">
+                                                        <p> <span class="surveyData">Date Created: </span>
+                                                            <%=survey.dateCreated%>
+                                                        </p>
+                                                        <p><span class="surveyData">Last Updated: </span>
+                                                            <%=survey.lastUpdated%>
+                                                        </p>
+                                                        <p><span class="surveyData">Questions: </span>
+                                                            <%=survey.numOfQues%>
+                                                        </p>
+                                                        <p><span class="surveyData">Responses: </span>
+                                                            <%=survey.responses.length%>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <a style="width: 87px;" href="/getResponse/<%= survey._id%>"
-                                                class="btn2">View All</a>
-                                            <%}else{%>
-                                                <p
-                                                    style="margin-bottom: 10px;color: rgb(221, 38, 38);text-align: center;">
-                                                    No
-                                                    responses yet</p>
-                                                <%}%>
-                                    </article>
-                                    <br>
-                                    <% })%>
-                                        <% }else{ %>
-                                            <%var index=0 %>
-                                                <article class="responses-container">
-                                                    <div class="responses-header">
-                                                        <h2 style="color: #333;">
-                                                            <%= survey.name%>
-                                                        </h2 style="color: #333;">
-                                                        <%if(survey.acceptingResponses==='Yes'){%>
-                                                            <p class="status-green"
-                                                                style="font-size: 17px; color: rgb(154, 153, 153);">
-                                                                Accepting Responses<span></span>
-                                                            </p>
-                                                            <%}else{%>
-                                                                <p class="status-red"
-                                                                    style="font-size: 17px; color: rgb(154, 153, 153);">
-                                                                    Closed <span></span>
-                                                                </p>
-                                                                <%}%>
-                                                    </div>
-                                                    <div class="survey-data">
-                                                        <div class="survey-content">
-                                                            <div class="grid">
-                                                                <p> <span class="surveyData">Date Created: </span>
-                                                                    <%=survey.dateCreated%>
-                                                                </p>
-                                                                <p><span class="surveyData">Last Updated: </span>
-                                                                    <%=survey.lastUpdated%>
-                                                                </p>
-                                                                <p><span class="surveyData">Questions: </span>
-                                                                    <%=survey.numOfQues%>
-                                                                </p>
-                                                                <p><span class="surveyData">Responses: </span>
-                                                                    <%=survey.responses.length%>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <%if(survey.responses.length!==0){%>
-                                                        <div>
-                                                            <p class="text-muted">Recent Responses</p>
-                                                            <div class="responses-table">
-                                                                <table>
-                                                                    <tr>
-                                                                        <th>Sno</th>
-                                                                        <th>Name</th>
-                                                                        <th>Email</th>
-                                                                        <th>Actions</th>
-                                                                        <%survey.responses.slice().reverse().forEach((response,index)=>
-                                                                            {%>
-                                                                    <tr>
-                                                                        <td style="width:80px;text-align:center">
-                                                                            <%= index+1%>
-                                                                        </td>
-                                                                        <td style=" min-width: 180px;">
-                                                                            <%= response.username%>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%= response.email%>
-                                                                        </td>
-                                                                        <td
-                                                                            style="display: flex;gap:6px; padding:8px;justify-content: center;">
-                                                                            <a class="icon-button viewBtn"
-                                                                                href="/viewUserResponse/<%= survey._id%>/<%=index%>/<%=response.username%>"><i
-                                                                                    class="bi bi-eye"></i>
-                                                                                View</a>
-                                                                            <form
-                                                                                action="/deleteSurveyResponse/<%=survey._id%>/<%=index%>/<%=response.username%>"
-                                                                                method="post">
-                                                                                <button type="submit"
-                                                                                    class="deleteBtn icon-button"><i
-                                                                                        class="bi bi-trash"></i>
-                                                                                    Delete</button>
-                                                                            </form>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <%});%>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <%}else{%>
-                                                            <p
-                                                                style="margin-bottom: 10px;color: rgb(221, 38, 38);text-align: center;">
-                                                                No
-                                                                responses yet</p>
-                                                            <%}%>
-                                                </article>
-                                                <% }%>
+                                            <%if(survey.responses.length!==0){%>
+                                                <div>
+                                                    <p class="text-muted">Recent Responses</p>
+                                                    <div class="responses-table">
+                                                        <table>
+                                                            <tr>
+                                                                <th>Sno</th>
+                                                                <th>Name</th>
+                                                                <th>Email</th>
+                                                                <th>Date</th>
+                                                                <th>Time</th>
+                                                                <th>Actions</th>
+                                                                <% survey.responses.reverse()%>
+                                                                    <%var count=0; if(3<=survey.responses.length ){
+                                                                        count=2; }else{ count=survey.responses.length-1;
+                                                                        }%>
+                                                                        <% for(let i=0; i <=count; i++ ){ %>
+                                                            <tr>
+                                                                <td style="width:80px;text-align:center">
+                                                                    <%= i+1%>
+                                                                </td>
+                                                                <td style=" min-width: 180px;">
+                                                                    <%= survey.responses[i].username%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= survey.responses[i].email%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= survey.responses[i].date%>
 
-                        </section>
+                                                                </td>
+                                                                <td>
+                                                                    <%= survey.responses[i].time%>
+                                                                </td>
+                                                                <td
+                                                                    style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                                                    <a class="icon-button viewBtn"
+                                                                        href="/viewUserResponse/<%= survey._id%>/<%=i%>/<%=survey.responses[i].username%>"><i
+                                                                            class="bi bi-eye"></i>
+                                                                        View</a>
+                                                                    <form
+                                                                        action="/deleteSurveyResponse/<%=survey._id%>/<%=i%>/<%=survey.responses[i].username%>"
+                                                                        method="post">
+                                                                        <button type="submit"
+                                                                            class="deleteBtn icon-button"><i
+                                                                                class="bi bi-trash"></i>
+                                                                            Delete</button>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                            <%}%>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <a style="width: 87px;" href="/getResponse/<%= survey._id%>"
+                                                    class="btn2">View All</a>
+                                                <%}else{%>
+                                                    <p
+                                                        style="margin-bottom: 10px;color: rgb(221, 38, 38);text-align: center;">
+                                                        No
+                                                        responses yet</p>
+                                                    <%}%>
+                                        </article>
+                                        <br>
+                                        <% })%>
+                                            <% }else{ %>
+                                                <%var index=0 %>
+                                                    <article class="responses-container">
+                                                        <div class="responses-header">
+                                                            <h2 style="color: #333;">
+                                                                <%= surveys.name%>
+                                                            </h2 style="color: #333;">
+                                                            <%if(surveys.acceptingResponses==='Yes'){%>
+                                                                <p class="status-green"
+                                                                    style="font-size: 17px; color: rgb(154, 153, 153);">
+                                                                    Accepting Responses<span></span>
+                                                                </p>
+                                                                <%}else{%>
+                                                                    <p class="status-red"
+                                                                        style="font-size: 17px; color: rgb(154, 153, 153);">
+                                                                        Closed <span></span>
+                                                                    </p>
+                                                                    <%}%>
+                                                        </div>
+                                                        <div class="survey-data">
+                                                            <div class="survey-content">
+                                                                <div class="grid">
+                                                                    <p> <span class="surveyData">Date Created: </span>
+                                                                        <%=surveys.dateCreated%>
+                                                                    </p>
+                                                                    <p><span class="surveyData">Last Updated: </span>
+                                                                        <%=surveys.lastUpdated%>
+                                                                    </p>
+                                                                    <p><span class="surveyData">Questions: </span>
+                                                                        <%=surveys.numOfQues%>
+                                                                    </p>
+                                                                    <p><span class="surveyData">Responses: </span>
+                                                                        <%=surveys.responses.length%>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <%if(surveys.responses.length!==0){%>
+                                                            <div>
+                                                                <p class="text-muted">Recent Responses</p>
+                                                                <div class="responses-table">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>Sno</th>
+                                                                            <th>Name</th>
+                                                                            <th>Email</th>
+                                                                            <th>Actions</th>
+                                                                            <%surveys.responses.slice().reverse().forEach((response,index)=>
+                                                                                {%>
+                                                                        <tr>
+                                                                            <td style="width:80px;text-align:center">
+                                                                                <%= index+1%>
+                                                                            </td>
+                                                                            <td style=" min-width: 180px;">
+                                                                                <%= response.username%>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= response.email%>
+                                                                            </td>
+                                                                            <td
+                                                                                style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                                                                <a class="icon-button viewBtn"
+                                                                                    href="/viewUserResponse/<%= surveys._id%>/<%=index%>/<%=response.username%>"><i
+                                                                                        class="bi bi-eye"></i>
+                                                                                    View</a>
+                                                                                <form
+                                                                                    action="/deleteSurveyResponse/<%=surveys._id%>/<%=index%>/<%=response.username%>"
+                                                                                    method="post">
+                                                                                    <button type="submit"
+                                                                                        class="deleteBtn icon-button"><i
+                                                                                            class="bi bi-trash"></i>
+                                                                                        Delete</button>
+                                                                                </form>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <%});%>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <%}else{%>
+                                                                <p
+                                                                    style="margin-bottom: 10px;color: rgb(221, 38, 38);text-align: center;">
+                                                                    No
+                                                                    responses yet</p>
+                                                                <%}%>
+                                                    </article>
+                                                    <% }%>
+
+                            </section>
+                            <%}else{%>
+                                <p style="margin:20px ;font-size:25px">Create surveys to view responses</p>
+                                <%}%>
             </main>
     </div>
-    <%- include('../includes/end.ejs') %>
+    <%- include('./dashboard-includes/footer.ejs') %>
+
+        <%- include('../includes/end.ejs') %>

@@ -1,39 +1,42 @@
 <%- include('./includes/head.ejs') %>
 
-    <%- include('./includes/navigation.ejs') %>
-
-        <%if(pageType==='error'){%>
-            <div class="responseContainer">
-                <h1>Page Not Found</h1>
-                <div class="responseImage">
-                    <img src="/img/error.png" alt="">
-                </div>
-            </div>
-            <%}%>
-                <%if(pageType==='newSurvey'){%>
-                    <div class="responseContainer">
-                        <h1>Survey Created Successfully</h1>
-                        <div class="responseImage">
-                            <img src="/img/surveyCreated.png" alt="">
-                        </div>
+    <main class="setFooter" style="height:90vh;">
+        <%- include('./includes/navigation.ejs') %>
+            <%if(pageType==='error'){%>
+                <div class="responseContainer">
+                    <h1>Page Not Found</h1>
+                    <div class="responseImage">
+                        <img src="/img/error.png" alt="">
                     </div>
-                    <%}%>
-                        <%if(pageType==='surveySubmitted'){%>
-                            <div class="responseContainer">
-                                <h1>Form Submitted Successfully</h1>
-                                <div class="responseImage">
-                                    <img src="/img/submitted.png" alt="">
-                                </div>
+                </div>
+                <%}%>
+                    <%if(pageType==='newSurvey'){%>
+                        <div class="responseContainer">
+                            <h1>Survey Created Successfully</h1>
+                            <div class="responseImage">
+                                <img src="/img/surveyCreated.png" alt="">
                             </div>
-                            <%}%>
-                                <%if(pageType==='notAccepting'){%>
-                                    <div class="responseContainer">
-                                        <h1>Form no longer accepting responses</h1>
-                                        <div class="responseImage">
-                                            <img src="/img/noLongerAccepting.png" alt="">
-                                        </div>
+                        </div>
+                        <%}%>
+                            <%if(pageType==='surveySubmitted'){%>
+                                <div class="responseContainer">
+                                    <h1>Form Submitted Successfully</h1>
+                                    <div class="responseImage">
+                                        <img src="/img/submitted.png" alt="">
                                     </div>
-                                    <%}%>
-
-                                        <%- include('./Dashboard/dashboard-includes/footer.ejs') %>
-                                            <%- include('./includes/end.ejs') %>
+                                </div>
+                                <%}%>
+                                    <%if(pageType==='notAccepting'){%>
+                                        <div class="responseContainer">
+                                            <h1>Form no longer accepting responses</h1>
+                                            <div class="responseImage">
+                                                <img src="/img/noLongerAccepting.png" alt="">
+                                            </div>
+                                        </div>
+                                        <%}%>
+    </main>
+    <footer style="width:100% ;margin: 0; " id="footer">
+        <p>SurveyIt Copyright &copy; 2022</p>
+        <p>Website By Japneet Singh</p>
+    </footer>
+    <%- include('./includes/end.ejs') %>
