@@ -10,9 +10,24 @@
             </div>
             <section id="globalSurveys">
                 <h1>Surveys shared globally on SurveyIt</h1>
+                <div class="searchBar">
+                    <form action="/searchSurvey" method="POST">
+                        <input type="text" placeholder="Enter survey details" name="searchSurvey" id="">
+
+                        <button type="submit" class="btn2">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    </form>
+                    <%if(message){%>
+                        <p style="margin: 14px;color: rgb(169, 22, 22);text-align: center;">
+                            <%=message%>
+                        </p>
+                        <%}%>
+                </div>
                 <% surveys.reverse().forEach(survey=>{ %>
                     <article>
-                        </p>
+                        <br>
                         <div class="globalSurveyImage">
                             <img src="<%= survey.thumbnailImage%>" alt="">
                         </div>

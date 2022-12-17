@@ -27,6 +27,7 @@
                                 <form action="/login" method="post">
                                     <label for="Email">Email</label>
                                     <input value="<%=email%>" type="text" name="email" placeholder="japneet@gmail.com">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                                     <label for="Email">Password</label>
                                     <input value="<%=password%>" name="password" type="password"
                                         placeholder="At least 6 characters">

@@ -102,6 +102,8 @@
                                 <button style="display: hidden;" id="#submitForm" type="submit"></button>
                             </div>
                             <input type="hidden" name="surveyId" value="<%=survey._id%>">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+
                         </form>
             </main>
     </div>

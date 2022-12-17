@@ -78,6 +78,7 @@
                                             <form action="/deleteSurvey/<%= survey._id%>" method="post">
                                                 <button type="submit" class="deleteBtn icon-button"><i
                                                         class="bi bi-trash"></i> Delete</button>
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                                             </form>
                                         </div>
                                     </div>

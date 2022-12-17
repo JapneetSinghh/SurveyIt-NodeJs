@@ -63,6 +63,9 @@
                                                                 <li>
                                                                     <form action="/deleteSurvey/<%= surveys[i]._id%>"
                                                                         method="post">
+                                                                        <input type="hidden" name="_csrf"
+                                                                            value="<%= csrfToken%>">
+
                                                                         <button style="width: 100%;height:100%"
                                                                             type="submit"
                                                                             class="delete-button">Delete</button>

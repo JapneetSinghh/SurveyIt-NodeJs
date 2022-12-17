@@ -6,7 +6,6 @@ exports.getLogin = (req, res, next) => {
     // USING FLASH() FOR SENDING RESPONSE TO USER 
     let message = req.flash('error');
     let className = req.flash('className');
-
     if (message.length > 0) {
         message = message[0];
     } else {
@@ -91,14 +90,7 @@ exports.postLogout = (req, res, next) => {
     req.flash('className', 'successFlash');
     req.session.destroy(err => {
         console.log(err);
-        return res.render('auth/login', {
-            pageTitle: 'Login | Survey It',
-            path: "/login",
-            message: 'Logged out successfully',
-            messageClass: 'successFlash',
-            email: '',
-            password: ''
-        });
+        return res.redirect('/login');
     })
 }
 exports.getSignup = (req, res, next) => {

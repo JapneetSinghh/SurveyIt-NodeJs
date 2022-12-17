@@ -20,7 +20,9 @@
                                     <li><a href="/newSurvey">New Survey</a></li>
                                     <li>
                                         <form action="/logout" method="POST"><button class="logout-button"
-                                                type="submit">Logout</button></form>
+                                                type="submit">Logout</button>
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

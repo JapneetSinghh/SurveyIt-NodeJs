@@ -41,6 +41,7 @@
                                     <label for="ConfirmPassword">Confirm Password</label>
                                     <input value="<%=confirmPassword%>" type="password" name="confirmPassword"
                                         placeholder="At least 6 characters">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                                     <button type="submit">Create Account</button>
                                 </form>
                     </section>

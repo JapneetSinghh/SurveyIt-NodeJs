@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const MONGODB_URI = `mongodb+srv://japneetSinghh:sidak123@cluster0.efo4pz7.mongodb.net/SurveyIt?retryWrites=true&w=majority`;
+// CSRF PROTECTION
+const csrf = require('csurf');
 
 // ADDING SESSION
 const session = require('express-session');
@@ -23,6 +25,7 @@ app.use(
     store: store
   })
 );
+
 
 // npm install--save connect - flash
 var flash = require('connect-flash');
@@ -60,9 +63,19 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+
+
 // Adding body parser
 const bodyParse = require('body-parser');
 app.use(bodyParse.urlencoded({ extended: false }));
+
+// Using csrf token
+const csrfProtection = csrf();
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  res.locals.csrfToken = req.csrfToken();
+  next();
+})
 
 // SETTING THE AUTHENTICATION STATUS FOR ALL PAGES
 app.use((req, res, next) => {
