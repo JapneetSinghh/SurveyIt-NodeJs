@@ -1,13 +1,13 @@
 <%- include('../includes/head.ejs') %>
     <%- include('../includes/navigation.ejs') %>
         <main>
-            <div style="  background: rgb(238, 224, 212);
-    height: 70vh;">
+            <div style="  background: rgb(238, 224, 212); height: 70vh;">
 
             </div>
             <div style="  background: rgb(172, 99, 35);height: 80vh;">
 
             </div>
+
             <section id="globalSurveys">
                 <h1>Surveys shared globally on SurveyIt</h1>
                 <div class="searchBar">
@@ -20,11 +20,12 @@
                         <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                     </form>
                     <%if(message){%>
-                        <p style="margin: 14px;color: rgb(169, 22, 22);text-align: center;">
+                        <p style="margin: 14px  ;color: rgb(169, 22, 22);text-align: center;">
                             <%=message%>
                         </p>
                         <%}%>
                 </div>
+                <br>
                 <% surveys.reverse().forEach(survey=>{ %>
                     <article>
                         <br>

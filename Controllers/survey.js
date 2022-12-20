@@ -27,6 +27,7 @@ exports.postNewSurvey = (req, res, next) => {
     const responses = [];
     const author = `${req.session.user.firstName} ${req.session.user.lastName}`;
     console.log('Author:' + author);
+
     // console.log(req.body);
     // GETTING  DETAILS OF EVERY QUESTION
     for (var i = 1; i < numOfQues; i++) {
@@ -123,14 +124,22 @@ exports.getEditSurvey = (req, res, next) => {
     const surveyId = req.params.surveyId;
     Survey.findById(surveyId)
         .then(survey => {
-            if (survey.userId.toString() !== req.user._id.toString()) {
-                console.log('Unauthorised');
-                return res.redirect('/404');
+            if (req.session.user.userType !== 'admin') {
+                if (survey.userId.toString() !== req.user._id.toString()) {
+                    console.log('Unauthorised');
+                    return res.redirect('/404');
+                }
+            }
+            var path = "";
+            if (req.session.user.userType === 'admin') {
+                path = '/admin/users';
+            } else {
+                path = '/surveys'
             }
             console.log(survey);
             res.render('Dashboard/editSurvey', {
                 pageTitle: "SurveyIt |  Edit Survey",
-                path: "",
+                path: path,
                 editMode: true,
                 viewMode: false,
                 survey: survey,
@@ -139,6 +148,12 @@ exports.getEditSurvey = (req, res, next) => {
         })
 }
 exports.postEditSurvey = (req, res, next) => {
+    if (req.session.user.userType !== 'admin') {
+        if (survey.userId.toString() !== req.user._id.toString()) {
+            console.log('Unauthorised');
+            return res.redirect('/404');
+        }
+    }
     const thumbnailImage = req.body.thumbnailImage;
     const acceptingResponses = req.body.acceptingResponses;
     const shareGloabally = req.body.shareGloabally;
@@ -198,7 +213,6 @@ exports.postEditSurvey = (req, res, next) => {
     const surveyId = req.body.surveyId;
     Survey.findById(surveyId)
         .then(survey => {
-            survey.userId = userId;
             survey.name = surveyName;
             survey.acceptingResponses = acceptingResponses;
             survey.shareGlobally = shareGloabally;
@@ -211,6 +225,9 @@ exports.postEditSurvey = (req, res, next) => {
                 .then(result => {
                     console.log('Survey Updated');
                     console.log(result);
+                    if (req.session.user.userType === 'admin') {
+                        return res.redirect('/admin/users');
+                    }
                     res.redirect('/surveys');
                 })
         })
@@ -221,11 +238,20 @@ exports.postEditSurvey = (req, res, next) => {
 }
 
 exports.postDeleteSurvey = (req, res, next) => {
+    if (req.session.user.userType !== 'admin') {
+        if (survey.userId.toString() !== req.user._id.toString()) {
+            console.log('Unauthorised');
+            return res.redirect('/404');
+        }
+    }
     const surveyId = req.params.surveyId;
     Survey.deleteOne({ _id: surveyId })
         .then(result => {
             console.log(result);
             console.log('Survey Deleted');
+            if (req.session.user.userType === 'admin') {
+                return res.redirect('/admin/users');
+            }
             res.redirect('/surveys');
         })
         .catch(err => {
@@ -239,13 +265,21 @@ exports.getViewSurvey = (req, res, next) => {
     Survey.findById(surveyId)
         .then(survey => {
             // console.log(survey);
-            if (survey.userId.toString() !== req.user._id.toString()) {
-                console.log('Unauthorised');
-                return res.redirect('/404');
+            if (req.session.user.userType !== 'admin') {
+                if (survey.userId.toString() !== req.user._id.toString()) {
+                    console.log('Unauthorised');
+                    return res.redirect('/404');
+                }
+            }
+            var path = "";
+            if (req.session.user.userType === 'admin') {
+                path = '/admin/users';
+            } else {
+                path = '/surveys'
             }
             res.render('Dashboard/viewSurvey', {
                 pageTitle: "SurveyIt | View Survey",
-                path: "",
+                path: path,
                 editMode: false,
                 viewMode: true,
                 survey: survey,
@@ -260,12 +294,18 @@ exports.getViewSurvey = (req, res, next) => {
 
 exports.getShareSurvey = (req, res, next) => {
     const surveyId = req.params.surveyId;
+    var path = "";
+    if (req.session.user.userType === 'admin') {
+        path = '/admin/users';
+    } else {
+        path = ''
+    }
     Survey.findById(surveyId)
         .then(survey => {
             // console.log(survey);
             res.render('Dashboard/shareSurvey', {
                 pageTitle: "SurveyIt | Share Survey",
-                path: "",
+                path: path,
                 survey: survey,
                 hostname: req.hostname
             })

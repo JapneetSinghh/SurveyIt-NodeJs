@@ -19,6 +19,18 @@ const userSchema = new Schema({
     },
     image: {
         type: String
+    },
+    userType: {
+        type: String,
+        required: true
+    },
+    dateCreated: {
+        type: String,
+        required: true
+    },
+    timeCreated: {
+        type: String,
+        required: true
     }
 })
 

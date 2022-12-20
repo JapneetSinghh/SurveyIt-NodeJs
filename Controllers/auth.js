@@ -145,11 +145,29 @@ exports.postSignup = (req, res, next) => {
             }
             bcrypt.hash(password, 12)
                 .then(hashedPassword => {
+
+                    // Date and time 
+                    const date2 = new Date();
+                    var dateNow = `${date2.getDate()} ${date2.toLocaleString('default', { month: 'short' })} ${date2.getFullYear()}`;
+                    var date = new Date();
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + ampm;
+                    var time = strTime;
+                    console.log(time, dateNow);
+
                     const user = new User({
                         firstName: firstName,
                         lastName: lastName,
                         email: email,
-                        password: hashedPassword
+                        password: hashedPassword,
+                        userType: 'user',
+                        dateCreated: dateNow,
+                        timeCreated: time
                     })
                     user.save();
                     console.log('Account Created');

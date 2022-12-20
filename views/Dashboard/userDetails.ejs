@@ -1,0 +1,161 @@
+<%- include('../includes/head.ejs') %>
+    <div class="container">
+        <%- include('./dashboard-includes/sidebar.ejs') %>
+            <main class="main setFooter">
+                <%- include('./dashboard-includes/topbar.ejs') %>
+                    <!-- WORKSPACE NAME HEADER -->
+                    <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items: center;border-bottom: 1px solid rgba(51, 51, 51, 0.539); margin: auto;"
+                        class="dashboard-header">
+                        <h2 class="pageHeading">
+                            <a style="color: blue;" href="/admin/users">Users</a> / <%= user.firstName%>
+                                <%= user.lastName%>
+                        </h2>
+                        <a class="btn2 newSurveyBtn" href="/newSurvey"> Start New Survey <i
+                                class="bi bi-plus-square-fill"></i></a>
+                    </div>
+                    <!-- Users Table -->
+                    <article class="responses-container" style="margin: 20px;">
+                        <div class="responses-header">
+                            <h2 style="color: #333;">SurveyIt Users
+                            </h2 style="color: #333;">
+                        </div>
+                        <div>
+                            <div class="responses-table">
+                                <table>
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>SignUp Date</th>
+                                        <th>SignUp Time</th>
+                                        <th>Actions</th>
+
+                                    <tr>
+                                        <td style="width:80px;text-align:center">
+                                            1
+                                        </td>
+                                        <td style=" min-width: 180px;">
+                                            <%=user.firstName%>
+                                        </td>
+                                        <td>
+                                            <%=user.email%>
+                                        </td>
+                                        <td>
+                                            <%=user.dateCreated%>
+                                        </td>
+                                        <td>
+                                            <%=user.timeCreated%>
+                                        </td>
+
+                                        <td style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                            <% if(user.userType!=='admin' ){%>
+                                                <a class="icon-button viewBtn"
+                                                    href="/admin/userDetails/<%= user._id%>"><i class="bi bi-eye"></i>
+                                                    Details</a>
+                                                <form action="" method="post">
+                                                    <button type="submit" class="deleteBtn icon-button"><i
+                                                            class="bi bi-trash"></i>
+                                                        Delete</button>
+                                                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                                </form>
+                                                <%}else{%>
+                                                    <a style="padding: 10px 20px;" class="icon-button viewBtn"
+                                                        href="/admin/userDetails/<%= user._id%>"><i
+                                                            class="bi bi-eye"></i>
+                                                        Details</a>
+                                                    <%}%>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </article>
+                    <%if(surveys.length){%>
+                        <div style="padding:10px 20px; color:gray; padding-bottom: 0;display:flex; justify-content:space-between; align-items: center;width:
+                                                                                                97%;margin: auto;">
+                            <h2>Surveys By <%= user.firstName%>
+                            </h2>
+                        </div>
+                        <!-- Surveys -->
+                        <% surveys.forEach(survey=>{%>
+                            <div class="survey-card">
+                                <div class="survey-card-image">
+                                    <img src="<%= survey.thumbnailImage%>" alt="">
+                                </div>
+                                <div class="survey-card-content">
+                                    <h1>
+                                        <%= survey.name%>
+                                    </h1>
+                                    <p style="word-wrap: break-word;">
+                                        <%= survey.description%>
+                                    </p>
+                                    <div class="grids-data">
+                                        <div>
+                                            <p class="survey-card-type">Status: </p>
+                                            <p class="survey-card-general">
+                                                <% if(survey.acceptingResponses==='Yes' ){%> Active <div
+                                                        class="status-active"></div>
+                                                    <%}else{%> Closed <div class="status-inactive"></div>
+                                                        <%}%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">No of questions: </p>
+                                            <p class="survey-card-general">
+                                                <%= survey.numOfQues%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">Date Created: </p>
+                                            <p class="survey-card-general">
+                                                <%= survey.dateCreated%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">Last Updated: </p>
+                                            <p class="survey-card-general">
+                                                <%= survey.lastUpdated%>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="survey-card-type">Form Type: </p>
+                                            <p class="survey-card-general">
+                                                <% if(survey.shareGlobally==='Yes' ){%> Public <% }else{%> Private
+                                                        <% }%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="survey-card-buttons">
+                                        <div class="survey-card-buttons">
+                                            <a class="icon-button viewBtn" href="/viewSurvey/<%= survey._id%>"><i
+                                                    class="bi bi-eye"></i>
+                                                View</a>
+                                            <a class="icon-button shareBtn" href="/shareSurvey/<%= survey._id%>"><i
+                                                    class="bi bi-share"></i></a>
+                                            <a class="btn2" href="/getResponse/<%= survey._id%>">Responses</a>
+                                        </div>
+                                        <div class="survey-card-buttons">
+                                            <a class="icon-button editBtn" href="/editSurvey/<%= survey._id%>"><i
+                                                    class="bi bi-pencil-square"></i>Edit</a>
+                                            <form action="/deleteSurvey/<%= survey._id%>" method="post">
+                                                <button type="submit" class="deleteBtn icon-button"><i
+                                                        class="bi bi-trash"></i>
+                                                    Delete</button>
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% })%>
+                                <%}else{%>
+                                    <p style="margin: 20px;color: #333;font-size:25px">No Surveys Created
+                                    </p>
+                                    <%}%>
+
+            </main>
+    </div>
+    <script src="/js/adjustHeight.js"></script>
+
+    <%- include('./dashboard-includes/footer.ejs') %>
+        <%- include('../includes/end.ejs') %>

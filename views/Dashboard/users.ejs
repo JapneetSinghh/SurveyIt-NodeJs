@@ -1,0 +1,80 @@
+<%- include('../includes/head.ejs') %>
+    <div class="container">
+        <%- include('./dashboard-includes/sidebar.ejs') %>
+            <main class="main setFooter">
+                <%- include('./dashboard-includes/topbar.ejs') %>
+                    <!-- WORKSPACE NAME HEADER -->
+                    <div style="padding:20px;width:97%;display:flex; justify-content:space-between; align-items: center;border-bottom: 1px solid rgba(51, 51, 51, 0.539); margin: auto;"
+                        class="dashboard-header">
+                        <h2 class="pageHeading">
+                            Users
+                        </h2>
+                        <a class="btn2 newSurveyBtn" href="/newSurvey"> Start New Survey <i
+                                class="bi bi-plus-square-fill"></i></a>
+                    </div>
+                    <!-- Users Table -->
+                    <article class="responses-container" style="margin: 20px;">
+                        <div class="responses-header">
+                            <h2 style="color: #333;">SurveyIt Users
+                            </h2 style="color: #333;">
+                        </div>
+                        <div>
+                            <div class="responses-table">
+                                <table>
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>SignUp Date</th>
+                                        <th>SignUp Time</th>
+                                        <th>Actions</th>
+                                        <%users.reverse().forEach((user,index)=>{%>
+                                    <tr>
+                                        <td style="width:80px;text-align:center">
+                                            <%= index+1%>
+                                        </td>
+                                        <td style=" min-width: 180px;">
+                                            <%=user.firstName%>
+                                        </td>
+                                        <td>
+                                            <%=user.email%>
+                                        </td>
+                                        <td>
+                                            <%=user.dateCreated%>
+                                        </td>
+                                        <td>
+                                            <%=user.timeCreated%>
+                                        </td>
+
+                                        <td style="display: flex;gap:6px; padding:8px;justify-content: center;">
+                                            <% if(user.userType!=='admin' ){%>
+                                                <a class="icon-button viewBtn"
+                                                    href="/admin/userDetails/<%= user._id%>"><i class="bi bi-eye"></i>
+                                                    Details</a>
+                                                <form action="/admin/deleteUser/<%=user._id%>" method="post">
+                                                    <button type="submit" class="deleteBtn icon-button"><i
+                                                            class="bi bi-trash"></i>
+                                                        Delete</button>
+                                                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                                </form>
+                                                <%}else{%>
+                                                    <a style="padding: 10px 20px;" class="icon-button viewBtn"
+                                                        href="/admin/userDetails/<%= user._id%>"><i
+                                                            class="bi bi-eye"></i>
+                                                        Details</a>
+                                                    <%}%>
+
+
+                                        </td>
+                                    </tr>
+                                    <%})%>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </article>
+            </main>
+    </div>
+    <%- include('./dashboard-includes/footer.ejs') %>
+        <%- include('../includes/end.ejs') %>

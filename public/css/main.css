@@ -693,3 +693,20 @@ footer p:last-child {
     color: rgb(245, 245, 245) !important;
     background-color: black !important;
 }
+
+#survey-card-buttons {
+    display: flex;
+    justify-content: space-between
+}
+
+@media screen and (max-width:800px) {
+    #survey-card-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #survey-card-buttons>div {
+        justify-content: space-between;
+        margin: 3px;
+    }
+}

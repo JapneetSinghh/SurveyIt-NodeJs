@@ -52,6 +52,13 @@ app.use((req, res, next) => {
       console.log('User Activated in req');
       res.locals.firstName = req.user.firstName;
       res.locals.lastName = req.user.lastName;
+      userType = req.user.userType;
+      if (req.user.userType === 'admin') {
+        res.locals.userType = 'adminPanelSurveyIt';
+      } else {
+        res.locals.userType = 'user';
+      }
+      console.log(res.locals)
       next();
     })
     .catch(err => {
@@ -91,13 +98,15 @@ const homeRoutes = require('./Routes/home');
 const surveyRoutes = require('./Routes/survey');
 const responseRoutes = require('./Routes/responses');
 const authRoutes = require('./Routes/auth');
+const adminRoutes = require('./Routes/admin');
 const errorContrller = require('./Controllers/errorPage');
 
 // Setting up the routes
-app.use('/', homeRoutes.router);
+app.use(homeRoutes.router);
 app.use(surveyRoutes.router);
 app.use(responseRoutes.router);
 app.use(authRoutes.router);
+app.use('/admin', adminRoutes.router);
 app.use(errorContrller.get404);
 
 
@@ -115,15 +124,33 @@ mongoose.connect(MONGODB_URI)
       .then(user => {
         if (!user) {
           console.log('No User Exists Till Now, Thereofore creating our first user');
-          let password = '123456'
+          let password = 'admin123'
           bcryptjs.hash(password, 12)
             .then(hashedPassword => {
+
+              // Date and time 
+              const date2 = new Date();
+              var dateNow = `${date2.getDate()} ${date2.toLocaleString('default', { month: 'short' })} ${date2.getFullYear()}`;
+              var date = new Date();
+              var hours = date.getHours();
+              var minutes = date.getMinutes();
+              var ampm = hours >= 12 ? 'pm' : 'am';
+              hours = hours % 12;
+              hours = hours ? hours : 12; // the hour '0' should be '12'
+              minutes = minutes < 10 ? '0' + minutes : minutes;
+              var strTime = hours + ':' + minutes + ' ' + ampm;
+              var time = strTime;
+              console.log(time, dateNow);
+
               const user = new User({
-                email: 'japneet8208@gmail.com',
-                firstName: 'Japneet',
-                lastName: 'Singh',
-                password: hashedPassword
+                email: 'admin@surveyit.com',
+                firstName: 'Japneet Singh',
+                lastName: 'Baluja',
+                password: hashedPassword,
                 // Adding encrypted password
+                userType: 'admin',
+                dateCreated: dateNow,
+                timeCreated: time
               })
               user.save(); // ADDS THE NEW USER TO DB
             })

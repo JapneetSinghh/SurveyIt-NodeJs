@@ -122,7 +122,7 @@ exports.postNewResponse = (req, res, next) => {
             const numOfQues = req.body.questionNumber.length;
             const username = req.body.userName;
             const email = req.body.userEmail;
-            // Dare and time 
+            // Date and time 
             const date2 = new Date();
             var dateNow = `${date2.getDate()} ${date2.toLocaleString('default', { month: 'short' })} ${date2.getFullYear()}`;
             var date = new Date();
@@ -133,7 +133,6 @@ exports.postNewResponse = (req, res, next) => {
             hours = hours ? hours : 12; // the hour '0' should be '12'
             minutes = minutes < 10 ? '0' + minutes : minutes;
             var strTime = hours + ':' + minutes + ' ' + ampm;
-
             var time = strTime;
 
             // FETCHING QUESTIONS , ANSWERS, QUESTION TYPE ETC 
@@ -286,9 +285,15 @@ exports.getFullResponse = (req, res, next) => {
     const surveyId = req.params.surveyId;
     Survey.findById(surveyId)
         .then(surveys => {
+            var path = "";
+            if (req.session.user.userType === 'admin') {
+                path = '/admin/users';
+            } else {
+                path = '/responses'
+            }
             res.render('Dashboard/responses', {
                 pageTitle: 'Survey It | Responses',
-                path: "/responses",
+                path: path,
                 pageType: 'oneSurvey',
                 surveys: surveys
             });
@@ -300,12 +305,20 @@ exports.getUserResponse = (req, res, next) => {
     const userName = req.params.username;
     var Response = null;
     var surveyData = '';
+    var path = "";
+    if (req.session.user.userType === 'admin') {
+        path = '/admin/users';
+    } else {
+        path = '/responses'
+    }
     Survey.findById(surveyId)
         .then(survey => {
-            if (req.user._id.toString() !== survey.userId.toString()) {
-                return res.redirect('/404');
+            if (req.session.user.userType !== 'admin') {
+                if (req.user._id.toString() !== survey.userId.toString()) {
+                    return res.redirect('/404');
+                }
             }
-            surveyData = survey
+            surveyData = survey;
             const responses = survey.responses;
             survey.responses.forEach((response) => {
                 if (response.username === userName) {
@@ -318,7 +331,7 @@ exports.getUserResponse = (req, res, next) => {
                 console.log(response);
                 res.render('Dashboard/viewSurvey', {
                     pageTitle: "SurveyIt | View Survey",
-                    path: "",
+                    path: path,
                     editMode: false,
                     viewMode: false,
                     responseMode: true,
