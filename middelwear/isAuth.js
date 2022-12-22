@@ -4,11 +4,9 @@ module.exports = (req, res, next) => {
         console.log('LOGIN TO ACCESS THIS PAGE');
         req.flash('error', 'Login To Access');
         req.flash('className', 'errorFlash');
-        if (req.session.user.userType !== 'admin') {
-            return res.redirect('/login');
-        } else {
-            console.log('admin access');
-        }
+        return res.redirect('/login');
     }
     next();
 }
+
+

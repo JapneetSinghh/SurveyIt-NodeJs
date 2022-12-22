@@ -1,0 +1,9 @@
+<div class="searchBar">
+    <form action="/searchSurvey" method="POST">
+        <input value="<%= searchSurvey%>" type="text" placeholder="Enter survey details" name="searchSurvey" id="">
+        <button type="submit" class="btn2">
+            <i class="bi bi-search"></i>
+        </button>
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+    </form>
+</div>

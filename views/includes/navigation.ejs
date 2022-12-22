@@ -8,8 +8,9 @@
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li>
                     <div class="dropdown">
-                        <span class="profile-navbar">
-                            <%= firstName%>
+
+                        <span class="profile-navbar" style="display: flex; align-items: center;gap: 3px;">
+                            <%= firstName%> <i style="font-size: 10px;" class="bi bi-caret-down-fill"></i>
                         </span>
                         <div class="dropdown-content">
                             <div class="dropdown-container">
@@ -30,9 +31,13 @@
                     </div>
                 </li>
                 <%}else{%>
+                    <li style="margin-right: 20px;"><a href="/login">Surveys </a></li>
                     <li><a class="loginBtn" href="/login">Log In</a></li>
                     <li><a class="signupBtn" href="/signup">Sign Up</a></li>
                     <%}%>
         </ul>
     </nav>
 </header>
+<div style="height: 70px;">
+
+</div>

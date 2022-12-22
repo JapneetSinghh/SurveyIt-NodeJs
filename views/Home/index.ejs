@@ -1,12 +1,114 @@
 <%- include('../includes/head.ejs') %>
     <%- include('../includes/navigation.ejs') %>
         <main>
-            <div style="  background: rgb(238, 224, 212); height: 70vh;">
-
-            </div>
-            <div style="  background: rgb(172, 99, 35);height: 80vh;">
-
-            </div>
+            <section>
+                <div style="  background: rgb(255, 255, 255);" class="showcase-1">
+                    <h1>Get insights quickly, with SurveyIt</h1>
+                    <p>Easily create and share online forms and surveys, and analyze responses in real-time.</p>
+                    <div>
+                        <a style="font-size: 16px;" href="/signup" class="btn4">Get Started - it's free</a>
+                    </div>
+                    <div class="showcase-1-img">
+                        <img src="/img/responses.png" alt="">
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="showcase-2">
+                    <h1>Create <span>forms</span>, <span>surveys</span>, and <span>quizzes</span> that people
+                        enjoy
+                        answering
+                    </h1>
+                </div>
+            </section>
+            <section id="features">
+                <h1>See What You Can Do With SurveyIt</h1>
+                <!-- 1 -->
+                <div class="showcase-3">
+                    <div class="showcase-3-survey-content">
+                        <h2>
+                            One dashboard for all tasks
+                        </h2>
+                        <p>A dashboard designed by SurveyIt developers to provied you the best user experience you can
+                            get. Withing few clicks you can create, edit or delete a form, share using link or
+                            share on SurveyIt Website, view responses filled by your audience</p>
+                    </div>
+                    <div class="showcase-3-image">
+                        <div>
+                            <img class="shadow-img" src="/img/showcase-3-1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="showcase-3">
+                    <div class="showcase-3-survey-content">
+                        <h2>
+                            Create an online form as easily as creating a document
+                        </h2>
+                        <p>Select from multiple question types, duplicate questions, and customize values
+                            as easily as pasting a list. Edit forms or save for later using SurveyIt</p>
+                    </div>
+                    <div class="showcase-3-image">
+                        <div>
+                            <img src="/img/showcase-3-2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="showcase-3">
+                    <div class="showcase-3-survey-content">
+                        <h2>
+                            Share surveys via email, link, or website
+                        </h2>
+                        <p>Share your surveys or forms to your audience via link or you can select share globally in
+                            survey settings to display your surveys on SurveyIt website
+                            engagement</p>
+                    </div>
+                    <div class="showcase-3-image">
+                        <div>
+                            <img class="shadow-img" src="/img/showcase-3-3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="showcase-3">
+                    <div class="showcase-3-survey-content">
+                        <h2>
+                            Create and respond to surveys from anywhere
+                        </h2>
+                        <p>Access, create, and edit forms on-the-go, from screens big and small. Others can respond to
+                            your survey from wherever
+                            they are—from any mobile device, tablet, or computer.
+                        </p>
+                    </div>
+                    <div class="showcase-3-image">
+                        <div>
+                            <img src="/img/showcase-3-5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <div class="showcase-3">
+                    <div class="showcase-3-survey-content">
+                        <h2>
+                            Send polished surveys and forms
+                        </h2>
+                        <p>Add Customize thumbnail for your form to adjust the look and feel or reflect your
+                            organization’s branding. And add custom
+                            logic that shows questions based on answers, for a more seamless experience.</p>
+                    </div>
+                    <div class="showcase-3-image">
+                        <div>
+                            <img src="/img/showcase-3-4.png" alt="" class="shadow-img">
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a style="font-size: 16px;" href="/login" class="btn4">
+                        Create New
+                        Survey</a>
+                </div>
+            </section>
 
             <section id="globalSurveys">
                 <h1>Surveys shared globally on SurveyIt</h1>
@@ -26,60 +128,7 @@
                         <%}%>
                 </div>
                 <br>
-                <% surveys.reverse().forEach(survey=>{ %>
-                    <article>
-                        <br>
-                        <div class="globalSurveyImage">
-                            <img src="<%= survey.thumbnailImage%>" alt="">
-                        </div>
-                        <div class="globalSurveyData">
-                            <p style="margin: 0;">Survey Owner : <%= survey.author%>
-                                    <h2>
-                                        <%= survey.surveyName %>
-                                    </h2>
-                                    <p>
-                                        <%= survey.description%>
-                                    </p>
-                                    <div class="grids-data">
-                                        <div>
-                                            <p class="survey-card-type">Status: </p>
-                                            <p class="survey-card-general">
-                                                <% if(survey.acceptingResponses==='Yes' ){%> Active <div
-                                                        class="status-active">
-                                                    </div>
-                                                    <%}else{%> Closed <div class="status-inactive"></div>
-                                                        <%}%>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="survey-card-type">Responses: </p>
-                                            <p class="survey-card-general">
-                                                <%= survey.numOfResponses%>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="survey-card-type">Date Created: </p>
-                                            <p class="survey-card-general">
-                                                <%= survey.dateCreated%>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="survey-card-type">Last Updated: </p>
-                                            <p class="survey-card-general">
-                                                <%= survey.lastUpdated%>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div style="width: 115px;">
-                                        <a style="text-align: center;" class="btn2"
-                                            href="/getSurvey/<%= survey.surveyName%>/<%= survey.surveyId%>"> Start
-                                            Survey</a>
-                                    </div>
-                        </div>
-                    </article>
-                    <% })%>
-
+                <%- include('../includes/surveys.ejs') %>
             </section>
 
 

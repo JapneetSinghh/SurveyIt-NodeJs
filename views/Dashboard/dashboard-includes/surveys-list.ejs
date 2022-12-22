@@ -1,0 +1,86 @@
+<!-- Surveys -->
+<% surveys.forEach(survey=>{%>
+    <div class="survey-card">
+        <div class="survey-card-image">
+            <img src="<%= survey.thumbnailImage%>" alt="">
+        </div>
+        <div class="survey-card-content">
+            <%if (path==='/admin/allSurveys' ) {%>
+                <p> Survey Owner: <%=survey.author%>
+                </p>
+                <%}%>
+                    <h1>
+                        <%= survey.name%>
+                    </h1>
+                    <p style="word-wrap: break-word;">
+                        <%= survey.description%>
+                    </p>
+                    <div class="grids-data">
+                        <div>
+                            <p class="survey-card-type">Status: </p>
+                            <p class="survey-card-general">
+                                <% if(survey.acceptingResponses==='Yes' ){%> Active <div class="status-active">
+                                    </div>
+                                    <%}else{%> Closed <div class="status-inactive"></div>
+                                        <%}%>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="survey-card-type">No of questions: </p>
+                            <p class="survey-card-general">
+                                <%= survey.numOfQues%>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="survey-card-type">Date Created: </p>
+                            <p class="survey-card-general">
+                                <%= survey.dateCreated%>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="survey-card-type">Last Updated: </p>
+                            <p class="survey-card-general">
+                                <%= survey.lastUpdated%>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="survey-card-type">Form Type: </p>
+                            <p class="survey-card-general">
+                                <% if(survey.shareGlobally==='Yes' ){%> Public <% }else{%> Private
+                                        <% }%>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="survey-card-type">Responses: </p>
+                            <p class="survey-card-general">
+                                <%= survey.responses.length%>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="survey-card-buttons">
+                        <div class="survey-card-buttons">
+                            <div style="display: flex; gap: 4px;">
+
+                                <a class="icon-button viewBtn" href="/viewSurvey/<%= survey._id%>"><i
+                                        class="bi bi-eye"></i>
+                                    View</a>
+                                <a class="icon-button shareBtn" href="/shareSurvey/<%= survey._id%>"><i
+                                        class="bi bi-share"></i></a>
+                            </div>
+
+                            <a class="btn2" href="/getResponse/<%= survey._id%>">Responses</a>
+                        </div>
+                        <div class="survey-card-buttons">
+                            <a class="icon-button editBtn" href="/editSurvey/<%= survey._id%>"><i
+                                    class="bi bi-pencil-square"></i>Edit</a>
+                            <form action="/deleteSurvey/<%= survey._id%>" method="post">
+                                <button type="submit" class="deleteBtn icon-button"><i class="bi bi-trash"></i>
+                                    Delete</button>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                            </form>
+                        </div>
+                    </div>
+        </div>
+    </div>
+
+    <% })%>

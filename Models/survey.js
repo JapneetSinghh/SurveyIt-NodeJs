@@ -48,7 +48,10 @@ const surveySchema = new Schema({
     author: {
         type: String,
         required: true
-    }
+    },
+    // authorImage: {
+    //     type: String
+    // }
 })
 
 module.exports = mongoose.model('Survey', surveySchema);

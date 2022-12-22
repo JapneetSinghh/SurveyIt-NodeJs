@@ -52,6 +52,7 @@ app.use((req, res, next) => {
       console.log('User Activated in req');
       res.locals.firstName = req.user.firstName;
       res.locals.lastName = req.user.lastName;
+      res.locals.image = req.user.image;
       userType = req.user.userType;
       if (req.user.userType === 'admin') {
         res.locals.userType = 'adminPanelSurveyIt';

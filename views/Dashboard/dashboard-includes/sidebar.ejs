@@ -18,7 +18,9 @@
         </a>
         <a href="/surveys" class="<%= path === '/surveys' ? 'active' : '' %>">
             <span class="bootstrao-icons"><i class="bi bi-ui-radios"></i></span>
-            <h3>Surveys</h3>
+            <h3>
+                <%if(userType==='adminPanelSurveyIt'){%> My Surveys<%}else{%>Surveys<%}%>
+            </h3>
         </a>
         <a href="/responses" class="<%= path === '/responses' ? 'active' : '' %>">
             <span class="bootstrao-icons"><i class="bi bi-bar-chart-line-fill"></i></span>
@@ -29,6 +31,10 @@
                 <span class="bootstrao-icons"><i class="bi bi-people-fill"></i></span>
                 <h3>Users</h3>
             </a>
+            <a href="/admin/allSurveys" class="<%= path === '/admin/allSurveys' ? 'active' : '' %>">
+                <span class="bootstrao-icons"><i class="bi bi-wallet2"></i></span>
+                <h3>All Surveys</h3>
+            </a>
             <%}%>
                 <form action="/logout" method="POST">
                     <button> <span class="bootstrao-icons"><i class="bi bi-box-arrow-right"></i></span>
@@ -36,6 +42,5 @@
                     </button>
                     <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                 </form>
-
     </div>
 </aside>

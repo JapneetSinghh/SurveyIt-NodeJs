@@ -167,7 +167,8 @@ exports.postSignup = (req, res, next) => {
                         password: hashedPassword,
                         userType: 'user',
                         dateCreated: dateNow,
-                        timeCreated: time
+                        timeCreated: time,
+                        image: '/img/UserThumbnail.png'
                     })
                     user.save();
                     console.log('Account Created');

@@ -1,4 +1,5 @@
 const Survey = require('../Models/survey');
+const User = require('../Models/users');
 const { validationResult } = require('express-validator/check');
 
 exports.getHome = (req, res, next) => {
@@ -101,7 +102,8 @@ exports.getSearchSurvey = (req, res, next) => {
                         numOfResponses: survey.responses.length,
                         surveyId: survey._id,
                         acceptingResponses: survey.acceptingResponses,
-                        lastUpdated: survey.lastUpdated
+                        lastUpdated: survey.lastUpdated,
+                        // authorImage: survey.authorImage
                     }
                     obj.push(surveyData);
                 }

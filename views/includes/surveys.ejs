@@ -1,0 +1,64 @@
+<% surveys.reverse().forEach(survey=>{ %>
+
+    <article>
+        <br>
+        <div class="globalSurveyImage">
+            <img src="<%= survey.thumbnailImage%>" alt="">
+        </div>
+        <div class="globalSurveyData">
+            <p>
+                Survey Owner: &nbsp;<%=survey.author%>
+            </p>
+            <h2>
+                <%= survey.surveyName %>
+            </h2>
+            <p>
+                <%= survey.description%>
+            </p>
+            <div class="grids-data">
+                <div>
+                    <p class="survey-card-type">Status: </p>
+                    <p class="survey-card-general">
+                        <% if(survey.acceptingResponses==='Yes' ){%> Active <div class="status-active">
+                            </div>
+                            <%}else{%> Closed <div class="status-inactive"></div>
+                                <%}%>
+                    </p>
+                </div>
+                <div>
+                    <p class="survey-card-type">Responses: </p>
+                    <p class="survey-card-general">
+                        <%= survey.numOfResponses%>
+                    </p>
+                </div>
+                <div>
+                    <p class="survey-card-type">Date Created: </p>
+                    <p class="survey-card-general">
+                        <%= survey.dateCreated%>
+                    </p>
+                </div>
+                <div>
+                    <p class="survey-card-type">Last Updated: </p>
+                    <p class="survey-card-general">
+                        <%= survey.lastUpdated%>
+                    </p>
+                </div>
+
+            </div>
+            <div style="display: flex; justify-content: space-between;align-items: center;">
+                <!-- <p style="margin: 0; gap: 8px; position: relative; display: flex; align-items: center;">
+                    <img style="width: 50px; height: 50px;border-radius: 50%; object-fit: cover; ;"
+                        src="<%= survey.authorImage%>" alt="">
+                    <%= survey.author%>
+                </p> -->
+                <div style="width: 115px;">
+                    <a style="text-align: center;" class="btn2"
+                        href="/getSurvey/<%= survey.surveyName%>/<%= survey.surveyId%>"> Start
+                        Survey</a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+    <br>
+    <% })%>

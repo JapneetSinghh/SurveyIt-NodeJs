@@ -27,6 +27,7 @@ exports.postNewSurvey = (req, res, next) => {
     const responses = [];
     const author = `${req.session.user.firstName} ${req.session.user.lastName}`;
     console.log('Author:' + author);
+    // const authorImage = req.user.image;
 
     // console.log(req.body);
     // GETTING  DETAILS OF EVERY QUESTION
@@ -86,7 +87,8 @@ exports.postNewSurvey = (req, res, next) => {
         numOfQues: numOfQues - 1,
         questionsData: questionsData,
         responses: [],
-        author: author
+        author: author,
+        // authorImage: authorImage
     });
     console.log("Desc" + surveyDescription);
     survey.save()
@@ -148,12 +150,7 @@ exports.getEditSurvey = (req, res, next) => {
         })
 }
 exports.postEditSurvey = (req, res, next) => {
-    if (req.session.user.userType !== 'admin') {
-        if (survey.userId.toString() !== req.user._id.toString()) {
-            console.log('Unauthorised');
-            return res.redirect('/404');
-        }
-    }
+
     const thumbnailImage = req.body.thumbnailImage;
     const acceptingResponses = req.body.acceptingResponses;
     const shareGloabally = req.body.shareGloabally;
@@ -165,6 +162,9 @@ exports.postEditSurvey = (req, res, next) => {
     var lastUpdated = dateCreated;
     const questionsData = [];
     const userId = req.user._id;
+    // if (req.session.user.userType !== 'admin') {
+    //     authorImage = req.user.image;
+    // }
     console.log(req.body);
     // GETTING  DETAILS OF EVERY QUESTION
     for (var i = 1; i < numOfQues; i++) {
@@ -213,6 +213,12 @@ exports.postEditSurvey = (req, res, next) => {
     const surveyId = req.body.surveyId;
     Survey.findById(surveyId)
         .then(survey => {
+            if (req.session.user.userType !== 'admin') {
+                if (survey.userId.toString() !== req.user._id.toString()) {
+                    console.log('Unauthorised');
+                    return res.redirect('/404');
+                }
+            }
             survey.name = surveyName;
             survey.acceptingResponses = acceptingResponses;
             survey.shareGlobally = shareGloabally;
@@ -221,6 +227,9 @@ exports.postEditSurvey = (req, res, next) => {
             survey.lastUpdated = lastUpdated;
             survey.numOfQues = numOfQues - 1;
             survey.questionsData = questionsData;
+            // if (req.session.user.userType !== 'admin') {
+            //     survey.authorImage = authorImage;
+            // }
             survey.save()
                 .then(result => {
                     console.log('Survey Updated');
@@ -238,12 +247,12 @@ exports.postEditSurvey = (req, res, next) => {
 }
 
 exports.postDeleteSurvey = (req, res, next) => {
-    if (req.session.user.userType !== 'admin') {
-        if (survey.userId.toString() !== req.user._id.toString()) {
-            console.log('Unauthorised');
-            return res.redirect('/404');
-        }
-    }
+    // if (req.session.user.userType !== 'admin') {
+    //     if (survey.userId.toString() !== req.user._id.toString()) {
+    //         console.log('Unauthorised');
+    //         return res.redirect('/404');
+    //     }
+    // }
     const surveyId = req.params.surveyId;
     Survey.deleteOne({ _id: surveyId })
         .then(result => {
