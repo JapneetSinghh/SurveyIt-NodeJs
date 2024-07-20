@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 
 // Setting the view engine ejs
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('views', path.join(__dirname, 'views'));
 
 
 
